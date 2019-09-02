@@ -1,0 +1,28 @@
+{
+  "front": {
+    "dados": {
+      "tamanhoX": 4,
+      "tamanhoY": 4,
+      "pInicialX": 1,
+      "pInicialY": 3,
+      "pFinalX": 3,
+      "pFinalY": 3,
+      "tipoAlg": 0,
+      "obstaculos": [
+        {
+          "x": 2,
+          "y": 3,
+          "larg": 1,
+          "altura": 2
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "larg": 2,
+          "altura": 1
+        }
+      ]
+    },
+    "algoritmo": 0
+  }
+}
