@@ -142,6 +142,10 @@ public class Algorithm {
         return null;
     }
 
+    public void bidirectional() {
+        System.out.println("Calculando...");
+    }
+    
     public void execute(Matrix initialmatrix, int tipoAlg) {
         try {
             long init = System.nanoTime();
@@ -153,6 +157,7 @@ public class Algorithm {
                     result = iterativeDeepeningSearch(initialmatrix);
                     break;
                 case Bidirecional:
+                    bidirectional();
                     break;
                 case Custo_Uniforme:
                     break;
@@ -167,6 +172,7 @@ public class Algorithm {
             long end = System.nanoTime();
 
             if (result != null) {
+                System.out.println("Algoritmo: "+tipoAlg);
                 System.out.println("Tempo: " + LocalTime.ofNanoOfDay(end - init).toString());
                 System.out.println("Movimentos: " + result.getMoves().toString());
                 System.out.println("Nivel: " + result.level);

@@ -2,6 +2,7 @@ package br.edu.ifsc.input;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author Felipe
@@ -30,6 +31,11 @@ public class Front_ {
 
     public void setAlgoritmo(int algoritmo) {
         this.algoritmo = algoritmo;
+    }
+
+    @Override
+    public String toString() {
+        return "Front_{" + "dados=" + dados + ", algoritmo=" + algoritmo + '}';
     }
 
 }

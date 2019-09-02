@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
 /**
  *
  * @author Felipe
@@ -99,4 +100,10 @@ public class Dados {
     public void setObstaculos(List<Obstaculo> obstaculos) {
         this.obstaculos = obstaculos;
     }
+
+    @Override
+    public String toString() {
+        return "Dados{" + "tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pInicialX=" + pInicialX + ", pInicialY=" + pInicialY + ", pFinalX=" + pFinalX + ", pFinalY=" + pFinalY + ", tipoAlg=" + tipoAlg + ", obstaculos=" + obstaculos + '}';
+    }
+
 }
