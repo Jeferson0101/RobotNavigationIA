@@ -44,8 +44,8 @@ public class Main {
         
         //--------Teste de um Json-----------
         Dados dados = new Dados();
-        dados.setTamanhoX(50);
-        dados.setTamanhoY(50);
+        dados.setTamanhoX(40);
+        dados.setTamanhoY(40);
         dados.setPInicialX(1);
         dados.setPInicialY(1);
         dados.setPFinalX(30);
@@ -61,7 +61,7 @@ public class Main {
         listaObstaculo.add(obstaculos);
         
         dados.setObstaculos(listaObstaculo);
-        
+        //System.out.println("obstaculos: " + dados.getObstaculos().get(0).getX());
         ChamadasFront chamada = new ChamadasFront();
         chamada.buscaUniforme(dados);
         //----------------------------------------
@@ -105,6 +105,8 @@ public class Main {
                             + " downloaded (" + current + " bytes read)");
                     System.out.println("Processando...");
                     leitor.Iniciar();
+                    
+                    
                     System.out.println("Done.");
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage() + ": An Inbound Connection Was Not Resolved");

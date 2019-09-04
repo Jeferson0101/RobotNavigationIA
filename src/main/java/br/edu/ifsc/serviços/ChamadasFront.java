@@ -17,11 +17,13 @@ import java.util.List;
  * @author Jeferson
  */
 public class ChamadasFront {
+    Nodo[][] nodo;
     
-    
-    public void buscaUniforme(Dados dados){
+    public void buscaUniforme(Dados dados){    
         //Criando instância da matriz de nodo com o tamanho definido no Json
-        Nodo nodo[][] = new Nodo[dados.getTamanhoX()][dados.getTamanhoY()];
+        
+        nodo = new Nodo[dados.getTamanhoX()][dados.getTamanhoY()];
+        
         
         List<Ponto> caminho = new ArrayList<>();
         Ponto ponto;
@@ -29,13 +31,16 @@ public class ChamadasFront {
         for(int i=0; i< dados.getObstaculos().size();i++){
             //Ajustar isso. Pois aqui só estou referenciando o xy inicial, tem que calcular 
             //a altura e largura e fazer um for setando true do perímetro do obstáculo 
+            nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()] = new Nodo("a");
             nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()].setEstado(Boolean.TRUE);
         }
         
         // seta o nó de saída 
+        nodo[dados.getPInicialX()][dados.getPInicialY()] = new Nodo("");
         nodo[dados.getPInicialX()][dados.getPInicialY()].setSaida(Boolean.TRUE);
         
         // seta o nó de chegada 
+        nodo[dados.getPFinalX()][dados.getPFinalY()] = new Nodo("");
         nodo[dados.getPFinalX()][dados.getPFinalY()].setChegada(Boolean.TRUE);
         
        

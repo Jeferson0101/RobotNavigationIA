@@ -8,7 +8,10 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Obstaculo {
-
+    
+    public Obstaculo(){
+        
+    }
     @SerializedName("x")
     @Expose
     private int x;

@@ -24,6 +24,9 @@ public class BuscaUniforme {
             
             //pega o ponto inicial e a partir dele coloca  na fila 
             for (int j = 1; j < 51; j++) {
+                if(nodo[i][j] == null){
+                    nodo[i][j] = new Nodo("");
+                }
                 if (nodo[i][j].getChegada()) {
                     nodo[i][j].setVisitadoA(Boolean.TRUE);
                     nodo[i][j].setCaminho(i + ";" + j);
