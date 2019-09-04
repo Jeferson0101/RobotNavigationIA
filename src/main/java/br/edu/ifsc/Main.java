@@ -3,10 +3,12 @@ package br.edu.ifsc;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Front;
 import br.edu.ifsc.input.Front_;
+import br.edu.ifsc.input.Obstaculo;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
-import br.edu.ifsc.navegacaoderobos.Leitor;
+import br.edu.ifsc.serviços.ChamadasFront;
+//import br.edu.ifsc.navegacaoderobos.Leitor;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 
@@ -18,6 +20,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +30,9 @@ import java.util.logging.Logger;
  * @author Felipe
  */
 public class Main {
-
+    
+    
+    
     public final static int SOCKET_PORT = 5501;
     public final static int FILE_SIZE = 4096;
     public final static String basePath = new File("").getAbsolutePath();
@@ -35,6 +41,30 @@ public class Main {
     public final static String FILE_TO_RECEIVED = basePath+String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%smodeloIntegracao.json",s,s,s,s,s,s,s,s);
 
     public static void main(String[] args) throws IOException {
+        
+        //--------Teste de um Json-----------
+        Dados dados = new Dados();
+        dados.setTamanhoX(50);
+        dados.setTamanhoY(50);
+        dados.setPInicialX(1);
+        dados.setPInicialY(1);
+        dados.setPFinalX(30);
+        dados.setPFinalY(30);
+        
+        Obstaculo obstaculos = new Obstaculo();
+        List<Obstaculo> listaObstaculo = new ArrayList<>(); 
+        obstaculos.setX(5);
+        obstaculos.setY(5);
+        obstaculos.setLarg(10);
+        obstaculos.setAltura(5);
+        
+        listaObstaculo.add(obstaculos);
+        
+        dados.setObstaculos(listaObstaculo);
+        
+        ChamadasFront chamada = new ChamadasFront();
+        chamada.buscaUniforme(dados);
+        //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
 
         BufferedInputStream bis = null;
