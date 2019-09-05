@@ -15,6 +15,11 @@ public class Ponto {
     
     private int x,y;
 
+    public Ponto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * @return the x
      */
@@ -42,6 +47,12 @@ public class Ponto {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Ponto{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

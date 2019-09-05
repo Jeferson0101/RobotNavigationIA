@@ -1,13 +1,9 @@
 package br.edu.ifsc;
 
-import br.edu.ifsc.input.Dados;
-import br.edu.ifsc.input.Front;
-import br.edu.ifsc.input.Front_;
-import br.edu.ifsc.input.Obstaculo;
+import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
-import br.edu.ifsc.serviços.ChamadasFront;
 //import br.edu.ifsc.navegacaoderobos.Leitor;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -44,12 +40,12 @@ public class Main {
         
         //--------Teste de um Json-----------
         Dados dados = new Dados();
-        dados.setTamanhoX(40);
-        dados.setTamanhoY(40);
-        dados.setPInicialX(1);
-        dados.setPInicialY(1);
-        dados.setPFinalX(30);
-        dados.setPFinalY(30);
+        dados.setTamanhoX(10);
+        dados.setTamanhoY(10);
+        dados.setPInicialX(5);
+        dados.setPInicialY(5);
+        dados.setPFinalX(8);
+        dados.setPFinalY(2);
         
         Obstaculo obstaculos = new Obstaculo();
         List<Obstaculo> listaObstaculo = new ArrayList<>(); 
@@ -62,8 +58,12 @@ public class Main {
         
         dados.setObstaculos(listaObstaculo);
         //System.out.println("obstaculos: " + dados.getObstaculos().get(0).getX());
-        ChamadasFront chamada = new ChamadasFront();
-        chamada.buscaUniforme(dados);
+        //ChamadasFront chamada = new ChamadasFront();
+        //chamada.buscaUniforme(dados);
+        ArrayList<Ponto> pontos = new ArrayList<>();
+        Algorithm alg = new Algorithm();
+        pontos = alg.AStar(dados);
+        System.out.println(pontos.toString());
         //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
 

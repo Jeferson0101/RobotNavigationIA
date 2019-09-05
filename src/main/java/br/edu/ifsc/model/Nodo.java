@@ -6,22 +6,25 @@
 package br.edu.ifsc.model;
 
 import br.edu.ifsc.input.Ponto;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Jeferson
  */
 public class Nodo {
-  private boolean isObstacle;
-  private boolean isStart;
-  private boolean isEnd;
-  private boolean Visited;
-  private boolean Explored;
-  List<Ponto> caminho = new ArrayList<>();
-  // para o A*
-  private double peso;
+    private boolean isObstacle;
+    private boolean isStart;
+    private boolean isEnd;
+    private boolean Visited;
+    private boolean Explored;
+    List<Ponto> caminho = new ArrayList<>();
+    // para o A*
+    private double peso;
+    private int i;
+    private int j;
+
 
     public Nodo(boolean isObstacle, boolean isStart, boolean isEnd, boolean Visited, boolean Explored) {
         this.isObstacle = isObstacle;
@@ -29,10 +32,21 @@ public class Nodo {
         this.isEnd = isEnd;
         this.Visited = Visited;
         this.Explored = Explored;
+        this.caminho.add(new Ponto(0,1));
     }
 
-    
-  
+    public Nodo(int i, int j) {
+        this.isObstacle = false;
+        this.isStart = false;
+        this.isEnd = false;
+        this.Visited = false;
+        this.Explored = false;
+        this.i = i;
+        this.j = j;
+        this.caminho.add(new Ponto(i,j));
+    }
+
+
     public boolean isIsObstacle() {
         return isObstacle;
     }
@@ -77,8 +91,8 @@ public class Nodo {
         return caminho;
     }
 
-    public void setCaminho(List<Ponto> caminho) {
-        this.caminho = caminho;
+    public void setCaminho(Ponto caminho) {
+        this.caminho.add(caminho);
     }
 
     public double getPeso() {
@@ -88,8 +102,22 @@ public class Nodo {
     public void setPeso(double peso) {
         this.peso = peso;
     }
-  
-  
-  
-  
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
+
 }
