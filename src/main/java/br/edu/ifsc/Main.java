@@ -1,12 +1,12 @@
 package br.edu.ifsc;
 
-import br.edu.ifsc.input.Dados;
-import br.edu.ifsc.input.Front;
-import br.edu.ifsc.input.Front_;
+import br.edu.ifsc.algorithm.AStar;
+import br.edu.ifsc.algorithm.Bidirectional;
+import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
-import br.edu.ifsc.navegacaoderobos.Leitor;
+//import br.edu.ifsc.navegacaoderobos.Leitor;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 
@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,10 +33,40 @@ public class Main {
     public final static int FILE_SIZE = 4096;
     public final static String basePath = new File("").getAbsolutePath();
     public final static String s = File.separator;
-    
-    public final static String FILE_TO_RECEIVED = basePath+String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%smodeloIntegracao.json",s,s,s,s,s,s,s,s);
+
+    public final static String FILE_TO_RECEIVED = basePath + String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%smodeloIntegracao.json", s, s, s, s, s, s, s, s);
 
     public static void main(String[] args) throws IOException {
+
+        //--------Teste de um Json-----------
+        Dados dados = new Dados();
+        dados.setTamanhoX(10);
+        dados.setTamanhoY(10);
+        dados.setPInicialX(5);
+        dados.setPInicialY(5);
+        dados.setPFinalX(8);
+        dados.setPFinalY(2);
+
+        Obstaculo obstaculos = new Obstaculo();
+        List<Obstaculo> listaObstaculo = new ArrayList<>();
+        obstaculos.setX(5);
+        obstaculos.setY(5);
+        obstaculos.setLarg(10);
+        obstaculos.setAltura(5);
+
+        listaObstaculo.add(obstaculos);
+
+        dados.setObstaculos(listaObstaculo);
+        //System.out.println("obstaculos: " + dados.getObstaculos().get(0).getX());
+        //ChamadasFront chamada = new ChamadasFront();
+        //chamada.buscaUniforme(dados);
+        ArrayList<Ponto> pontos = new ArrayList<>();
+        AStar aStar = new AStar();
+        Bidirectional bi = new Bidirectional();
+        //pontos = aStar.AStar(dados);
+        pontos = bi.bidirectional(dados);
+        System.out.println(pontos.toString());
+        //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
 
         BufferedInputStream bis = null;
@@ -75,6 +107,7 @@ public class Main {
                             + " downloaded (" + current + " bytes read)");
                     System.out.println("Processando...");
                     leitor.Iniciar();
+
                     System.out.println("Done.");
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage() + ": An Inbound Connection Was Not Resolved");
