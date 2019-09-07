@@ -1,7 +1,10 @@
 package br.edu.ifsc;
 
+<<<<<<< HEAD
 import br.edu.ifsc.algorithm.AStar;
 import br.edu.ifsc.algorithm.Bidirectional;
+=======
+>>>>>>> master
 import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
@@ -28,7 +31,9 @@ import java.util.logging.Logger;
  * @author Felipe
  */
 public class Main {
-
+    
+    
+    
     public final static int SOCKET_PORT = 5501;
     public final static int FILE_SIZE = 4096;
     public final static String basePath = new File("").getAbsolutePath();
@@ -37,7 +42,11 @@ public class Main {
     public final static String FILE_TO_RECEIVED = basePath + String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%smodeloIntegracao.json", s, s, s, s, s, s, s, s);
 
     public static void main(String[] args) throws IOException {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> master
         //--------Teste de um Json-----------
         Dados dados = new Dados();
         dados.setTamanhoX(10);
@@ -46,25 +55,42 @@ public class Main {
         dados.setPInicialY(5);
         dados.setPFinalX(8);
         dados.setPFinalY(2);
+<<<<<<< HEAD
 
         Obstaculo obstaculos = new Obstaculo();
         List<Obstaculo> listaObstaculo = new ArrayList<>();
+=======
+        
+        Obstaculo obstaculos = new Obstaculo();
+        List<Obstaculo> listaObstaculo = new ArrayList<>(); 
+>>>>>>> master
         obstaculos.setX(5);
         obstaculos.setY(5);
         obstaculos.setLarg(10);
         obstaculos.setAltura(5);
+<<<<<<< HEAD
 
         listaObstaculo.add(obstaculos);
 
+=======
+        
+        listaObstaculo.add(obstaculos);
+        
+>>>>>>> master
         dados.setObstaculos(listaObstaculo);
         //System.out.println("obstaculos: " + dados.getObstaculos().get(0).getX());
         //ChamadasFront chamada = new ChamadasFront();
         //chamada.buscaUniforme(dados);
         ArrayList<Ponto> pontos = new ArrayList<>();
+<<<<<<< HEAD
         AStar aStar = new AStar();
         Bidirectional bi = new Bidirectional();
         //pontos = aStar.AStar(dados);
         pontos = bi.bidirectional(dados);
+=======
+        Algorithm alg = new Algorithm();
+        pontos = alg.AStar(dados);
+>>>>>>> master
         System.out.println(pontos.toString());
         //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
@@ -107,7 +133,12 @@ public class Main {
                             + " downloaded (" + current + " bytes read)");
                     System.out.println("Processando...");
                     leitor.Iniciar();
+<<<<<<< HEAD
 
+=======
+                    
+                    
+>>>>>>> master
                     System.out.println("Done.");
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage() + ": An Inbound Connection Was Not Resolved");
