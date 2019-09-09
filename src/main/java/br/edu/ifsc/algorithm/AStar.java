@@ -32,7 +32,15 @@ public class AStar {
         }
         //adicionando os obstaculos ao nodo
         for (int i = 0; i < dados.getObstaculos().size(); i++) {
-            nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()].setIsObstacle(Boolean.TRUE);
+            for (int x =0; x <=dados.getObstaculos().get(i).getX();x++){
+                for (int y =0; y <=dados.getObstaculos().get(i).getY();y++){
+                    nodo[dados.getObstaculos().get(i).getX()+x][dados.getObstaculos().get(i).getY() + y].setIsObstacle(Boolean.TRUE);
+                    int t1 = dados.getObstaculos().get(i).getX()+x;
+                    int t2 = dados.getObstaculos().get(i).getY() + y;
+                    System.out.println("\n\nT1:" + t1 + "\nt2: " + t2);
+                }
+            }
+
         }
         // seta o nó de saída
         nodo[dados.getPInicialX()][dados.getPInicialY()].setIsStart(Boolean.TRUE);

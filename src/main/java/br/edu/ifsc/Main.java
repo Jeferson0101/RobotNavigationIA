@@ -49,10 +49,10 @@ public class Main {
 
         Obstaculo obstaculos = new Obstaculo();
         List<Obstaculo> listaObstaculo = new ArrayList<>();
-        obstaculos.setX(7);
-        obstaculos.setY(3);
-        obstaculos.setLarg(10);
-        obstaculos.setAltura(5);
+        obstaculos.setX(2);
+        obstaculos.setY(2);
+        obstaculos.setLarg(2);
+        obstaculos.setAltura(2);
 
         listaObstaculo.add(obstaculos);
 
