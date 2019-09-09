@@ -9,23 +9,24 @@ package br.edu.ifsc.algorithm;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Nodo;
+
 import java.util.ArrayList;
 
 /**
- *
  * @author Aluno
  */
 public class AStar {
+    Nodo nodoAtual;
+    ArrayList<Ponto> caminho = new ArrayList<>();
+    ArrayList<Nodo> lista = new ArrayList<>();
+
     public ArrayList<Ponto> AStar(Dados dados) {
         Nodo[][] nodo = new Nodo[dados.getTamanhoX()][dados.getTamanhoY()];
-        ArrayList<Ponto> caminho = new ArrayList<>();
-        ArrayList<Nodo> lista = new ArrayList<>();
-        Nodo nodoAtual;
 
         for (int i = 0; i < dados.getTamanhoX(); i++) {
             for (int j = 0; j < dados.getTamanhoY(); j++) {
                 if (nodo[i][j] == null) {
-                    nodo[i][j] = new Nodo(i,j);
+                    nodo[i][j] = new Nodo(i, j);
                 }
             }
         }
@@ -36,10 +37,9 @@ public class AStar {
         // seta o nó de saída
         nodo[dados.getPInicialX()][dados.getPInicialY()].setIsStart(Boolean.TRUE);
         nodo[dados.getPInicialX()][dados.getPInicialY()].setExplored(Boolean.TRUE);
-        nodo[dados.getPInicialX()][dados.getPInicialY()].setCaminho(new Ponto(dados.getPFinalX(),dados.getPFinalY()));
+        nodo[dados.getPInicialX()][dados.getPInicialY()].setCaminho(new Ponto(dados.getPFinalX(), dados.getPFinalY()));
         // seta o nó de chegada
         nodo[dados.getPFinalX()][dados.getPFinalY()].setIsEnd(Boolean.TRUE);
-
 
 
         //adicionando a lista
@@ -51,7 +51,7 @@ public class AStar {
             int remove = 0;
             for (Nodo no : lista) {
                 teste++;
-                if ((no.getPeso() + previsaoPeso(no, dados)) < (nodoAtual.getPeso() + previsaoPeso(nodoAtual,dados))) {
+                if ((no.getPeso() + previsaoPeso(no, dados)) < (nodoAtual.getPeso() + previsaoPeso(nodoAtual, dados))) {
                     nodoAtual = no;
                     remove = teste - 1;
                 }
@@ -62,177 +62,56 @@ public class AStar {
             caminho.add(nodoAtual.getCaminho().get(0));
             int i = nodoAtual.getI() + 1;
             int j = nodoAtual.getJ();
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
 
-                }
-            }
             j++;
             i--;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             i--;
             j--;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             i++;
             j--;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             i++;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             j = j + 2;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             i = i - 2;
-            if (nodo[i][j] != null) {
-                if (!nodo[i][j].isVisited()) {
-                    if (!nodo[i][j].isIsObstacle()) {
-                        if (!nodo[i][j].isIsEnd()) {
-                            nodo[i][j].setVisited(Boolean.TRUE);
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            nodo[i][j].setCaminho(new Ponto(i, j));
-                            lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
-                        }
-                    }
-                } else {
-                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
-                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                        nodo[i][j].setCaminho(new Ponto(i, j));
-                    }
-
-                }
-            }
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
             j = j - 2;
+            this.verificaCaminho(dados, nodo, i, j);
+            if (verificaChegada(nodo, i, j))
+                return caminho;
+        }
+        return caminho;
+    }
+
+    private boolean verificaChegada(Nodo[][] no, int i, int j) {
+        if (no[i][j].isIsEnd()) {
+            no[i][j].setPeso(nodoAtual.getPeso() + 1);
+            caminho.add(new Ponto(i, j));
+            return true;
+        }
+        return false;
+    }
+
+    private void verificaCaminho(Dados dados, Nodo[][] nodo, int i, int j) {
+        if (!(i < 0 || i > dados.getTamanhoX() || j < 0 | j > dados.getTamanhoY())) {
             if (nodo[i][j] != null) {
                 if (!nodo[i][j].isVisited()) {
                     if (!nodo[i][j].isIsObstacle()) {
@@ -241,11 +120,6 @@ public class AStar {
                             nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
                             nodo[i][j].setCaminho(new Ponto(i, j));
                             lista.add(nodo[i][j]);
-                        } else {
-                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
-                            System.out.println(nodo[i][j].getPeso());
-                            caminho.add(new Ponto(i, j));
-                            return caminho;
                         }
                     }
                 } else {
@@ -257,10 +131,9 @@ public class AStar {
                 }
             }
         }
-        return caminho;
     }
-    
-    private double previsaoPeso(Nodo nodo,Dados dados) {
+
+    private double previsaoPeso(Nodo nodo, Dados dados) {
         int x = dados.getPFinalX();
         int y = dados.getPFinalY();
 

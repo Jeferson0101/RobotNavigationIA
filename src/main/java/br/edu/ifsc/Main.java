@@ -42,15 +42,15 @@ public class Main {
         Dados dados = new Dados();
         dados.setTamanhoX(10);
         dados.setTamanhoY(10);
-        dados.setPInicialX(5);
-        dados.setPInicialY(5);
+        dados.setPInicialX(1);
+        dados.setPInicialY(1);
         dados.setPFinalX(8);
         dados.setPFinalY(2);
 
         Obstaculo obstaculos = new Obstaculo();
         List<Obstaculo> listaObstaculo = new ArrayList<>();
-        obstaculos.setX(5);
-        obstaculos.setY(5);
+        obstaculos.setX(7);
+        obstaculos.setY(3);
         obstaculos.setLarg(10);
         obstaculos.setAltura(5);
 
@@ -63,8 +63,8 @@ public class Main {
         ArrayList<Ponto> pontos = new ArrayList<>();
         AStar aStar = new AStar();
         Bidirectional bi = new Bidirectional();
-        //pontos = aStar.AStar(dados);
-        pontos = bi.bidirectional(dados);
+        pontos = aStar.AStar(dados);
+        //pontos = bi.bidirectional(dados);
         System.out.println(pontos.toString());
         //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
