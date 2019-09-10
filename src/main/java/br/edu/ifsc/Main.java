@@ -40,13 +40,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         //--------Teste de um Json-----------
-        Dados dados = new Dados();
+        /*Dados dados = new Dados();
         dados.setTamanhoX(10);
         dados.setTamanhoY(10);
         dados.setPInicialX(1);
         dados.setPInicialY(1);
         dados.setPFinalX(8);
-        dados.setPFinalY(2);
+        dados.setPFinalY(1);
 
         Obstaculo obstaculos = new Obstaculo();
         List<Obstaculo> listaObstaculo = new ArrayList<>();
@@ -65,10 +65,10 @@ public class Main {
         AStar aStar = new AStar();
         Bidirectional bi = new Bidirectional();
         UniformCost custoUniforme = new UniformCost();
-        pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
+        //pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
         //pontos = aStar.AStar(dados);
-        //pontos = bi.bidirectional(dados);
-        System.out.println(pontos.toString());
+        pontos = bi.bidirectional(dados);
+        System.out.println(pontos.toString());*/
         //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
 

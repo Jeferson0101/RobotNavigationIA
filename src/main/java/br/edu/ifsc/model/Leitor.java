@@ -28,6 +28,6 @@ public class Leitor {
         Dados dados = front_.getDados();
         Algorithm algorithm = new Algorithm();
         Matrix matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
-        algorithm.execute(matrix, dados.getTipoAlg());
+        algorithm.execute(matrix, dados);
     }
 }
