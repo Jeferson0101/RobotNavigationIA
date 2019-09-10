@@ -94,6 +94,14 @@ public class Nodo {
     public void setCaminho(Ponto caminho) {
         this.caminho.add(caminho);
     }
+    
+    
+    public void setCaminho2(List<Ponto> caminho, Ponto novoPonto) {
+        this.caminho.clear();
+        this.caminho.addAll(caminho);
+        this.caminho.add(novoPonto);
+    }
+
 
     public double getPeso() {
         return peso;

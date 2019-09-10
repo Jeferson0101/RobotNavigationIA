@@ -2,6 +2,7 @@ package br.edu.ifsc;
 
 import br.edu.ifsc.algorithm.AStar;
 import br.edu.ifsc.algorithm.Bidirectional;
+import br.edu.ifsc.algorithm.UniformCost;
 import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
@@ -63,7 +64,9 @@ public class Main {
         ArrayList<Ponto> pontos = new ArrayList<>();
         AStar aStar = new AStar();
         Bidirectional bi = new Bidirectional();
-        pontos = aStar.AStar(dados);
+        UniformCost custoUniforme = new UniformCost();
+        pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
+        //pontos = aStar.AStar(dados);
         //pontos = bi.bidirectional(dados);
         System.out.println(pontos.toString());
         //----------------------------------------
