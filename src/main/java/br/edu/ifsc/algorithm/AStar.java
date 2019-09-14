@@ -30,18 +30,12 @@ public class AStar {
                 }
             }
         }
+
         //adicionando os obstaculos ao nodo
         for (int i = 0; i < dados.getObstaculos().size(); i++) {
-            for (int x =0; x <=dados.getObstaculos().get(i).getX();x++){
-                for (int y =0; y <=dados.getObstaculos().get(i).getY();y++){
-                    nodo[dados.getObstaculos().get(i).getX()+x][dados.getObstaculos().get(i).getY() + y].setIsObstacle(Boolean.TRUE);
-                    int t1 = dados.getObstaculos().get(i).getX()+x;
-                    int t2 = dados.getObstaculos().get(i).getY() + y;
-                    System.out.println("\n\nT1:" + t1 + "\nt2: " + t2);
-                }
-            }
-
+            nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()].setIsObstacle(Boolean.TRUE);
         }
+
         // seta o nó de saída
         nodo[dados.getPInicialX()][dados.getPInicialY()].setIsStart(Boolean.TRUE);
         nodo[dados.getPInicialX()][dados.getPInicialY()].setExplored(Boolean.TRUE);
@@ -55,17 +49,17 @@ public class AStar {
 
         while (!lista.isEmpty()) {
             nodoAtual = lista.get(0);
-            int teste = 0;
-            int remove = 0;
+            int aux = 0;
+            int toRemovePosition = 0;
             for (Nodo no : lista) {
-                teste++;
+                aux++;
                 if ((no.getPeso() + previsaoPeso(no, dados)) < (nodoAtual.getPeso() + previsaoPeso(nodoAtual, dados))) {
                     nodoAtual = no;
-                    remove = teste - 1;
+                    toRemovePosition = aux - 1;
                 }
             }
             nodoAtual.setExplored(Boolean.TRUE);
-            lista.remove(remove);
+            lista.remove(toRemovePosition);
 
             caminho.add(nodoAtual.getCaminho().get(0));
             int i = nodoAtual.getI() + 1;

@@ -7,7 +7,7 @@
 		"pInicialY": 1,
 		"pFinalX": 9,
 		"pFinalY": 1,
-		"tipoAlg": 1,
+		"tipoAlg": 4,
 		"obstaculos": [
 			{"x": 5, "y": 4, "larg": 1, "altura": 1}
 		]
