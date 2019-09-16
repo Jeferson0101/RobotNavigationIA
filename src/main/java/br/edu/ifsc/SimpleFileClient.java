@@ -5,12 +5,15 @@
  */
 package br.edu.ifsc;
 
+import static br.edu.ifsc.Main.FILE_SIZE;
+import static br.edu.ifsc.Main.FILE_TO_RECEIVED;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,7 +22,7 @@ public class SimpleFileClient {
 
     public final static int SOCKET_PORT = 5501;
     public final static String SERVER = "127.0.0.1";
-    
+
     public final static String FILE_TO_SEND = "C:\\Users\\cesar\\Documents\\Projetos\\modeloIntegracao.json";
     public final static int FILE_SIZE = 4048;
 
@@ -34,6 +37,7 @@ public class SimpleFileClient {
         int current = 0;
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
+
         try {
             sock = new Socket(SERVER, SOCKET_PORT);
             System.out.println("Connecting...");
@@ -48,6 +52,10 @@ public class SimpleFileClient {
             System.out.println("Sending " + FILE_TO_SEND + "(" + mybytearray.length + " bytes)");
             os.write(mybytearray, 0, mybytearray.length);
             os.flush();
+
+
+        } catch (Exception ex) {
+            System.out.println("Servidor Fechado");
         } finally {
             if (bis != null) {
                 bis.close();

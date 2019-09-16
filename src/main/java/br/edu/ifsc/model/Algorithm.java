@@ -65,11 +65,9 @@ public class Algorithm {
                     break;
                 case Bidirecional:
                     pontos = bi.bidirectional(dados);
-                    System.out.println(pontos.toString());
                     break;
                 case Custo_Uniforme:
                     pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
-                    System.out.println(pontos.toString());
                     break;
                 case A_Estrela:
                     pontos = aStar.AStar(dados);
