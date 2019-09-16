@@ -14,6 +14,10 @@ import java.time.LocalTime;
 import java.util.*;
 
 import static br.edu.ifsc.model.Algoritmos.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.Writer;
 
 /**
  * @author Felipe
@@ -40,7 +44,11 @@ public class Algorithm {
     Bidirectional bi = new Bidirectional();
     UniformCost custoUniforme = new UniformCost();
     AStar aStar = new AStar();
+    Gson gson = new Gson();
+    String output = "C:\\Users\\cesar\\Documents\\Projetos\\resultado.json";
+
     ArrayList<Ponto> pontos = new ArrayList<>();
+
     public static boolean validatePosition(Matrix node, int pFinalX, int pFinalY) {
         return node.roboActualPositionX == pFinalX && node.roboActualPositionY == pFinalY;
     }
@@ -65,7 +73,6 @@ public class Algorithm {
                     break;
                 case A_Estrela:
                     pontos = aStar.AStar(dados);
-                    System.out.println(pontos.toString());
                     break;
                 case Largura:
                     result = sWidth.searchWidth(initialmatrix);
@@ -75,15 +82,13 @@ public class Algorithm {
             }
             long end = System.nanoTime();
 
-            if (result != null) {
-                //System.out.println("Algoritmo: " + dados.getTipoAlg());
-                //System.out.println("Tempo: " + LocalTime.ofNanoOfDay(end - init).toString());
-                System.out.println("Movimentos: " + result.getMoves().toString());
-                //System.out.println("Nivel: " + result.level);
-                //System.out.println("Nodos Processados: " + nodeProcessed);
-                //nodeProcessed = 0;
-                //System.out.println("Total de Nodos Gerados: " + NodeManager.totalNodes);
-                //NodeManager.totalNodes = 0;
+            if (pontos != null) {
+                try ( Writer writer = new FileWriter(output)) {
+                    Gson gson = new GsonBuilder().create();
+                    gson.toJson(pontos, writer);
+                } catch (Exception ex) {
+                    System.out.println("Deu ruim");
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
