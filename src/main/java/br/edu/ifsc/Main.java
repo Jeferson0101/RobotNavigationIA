@@ -7,6 +7,7 @@ import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
+import br.edu.ifsc.model.Robot;
 //import br.edu.ifsc.navegacaoderobos.Leitor;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -79,7 +80,7 @@ public class Main {
         Socket sock = null;
         int bytesRead;
         int current = 0;
-
+        Robot robot = new Robot();
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
         try {
@@ -123,6 +124,8 @@ public class Main {
                     System.out.println("Sending " + FILE_TO_SEND + "(" + mybytearray.length + " bytes)");
                     os.write(mybytearray, 0, mybytearray.length);
                     os.flush();
+                    
+                    robot.Enviar();
 
                     System.out.println("Done.");
                 } catch (IOException ex) {
