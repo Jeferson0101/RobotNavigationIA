@@ -33,7 +33,7 @@ class Algoritmos {
 }
 
 public class Algorithm {
-
+    Robot robot = new Robot();
     public static int move;
     public int nodeProcessed = 0;
     DeepSearch dSearch = new DeepSearch();
@@ -82,6 +82,7 @@ public class Algorithm {
                 try ( Writer writer = new FileWriter(output)) {
                     Gson gson = new GsonBuilder().create();
                     gson.toJson(pontos, writer);
+                    robot.Enviar(gson.toJson(pontos));
                 } catch (Exception ex) {
                     System.out.println("Deu ruim");
                 }

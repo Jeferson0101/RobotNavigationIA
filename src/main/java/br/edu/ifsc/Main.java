@@ -94,7 +94,7 @@ public class Main {
                     os.write(mybytearray, 0, mybytearray.length);
                     os.flush();
                     
-                    robot.Enviar();
+                    //robot.Enviar();
 
                     System.out.println("Done.");
                 } catch (IOException ex) {
