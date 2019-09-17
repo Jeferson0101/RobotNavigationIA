@@ -41,37 +41,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        //--------Teste de um Json-----------
-        /*Dados dados = new Dados();
-        dados.setTamanhoX(10);
-        dados.setTamanhoY(10);
-        dados.setPInicialX(1);
-        dados.setPInicialY(1);
-        dados.setPFinalX(8);
-        dados.setPFinalY(1);
-
-        Obstaculo obstaculos = new Obstaculo();
-        List<Obstaculo> listaObstaculo = new ArrayList<>();
-        obstaculos.setX(2);
-        obstaculos.setY(2);
-        obstaculos.setLarg(2);
-        obstaculos.setAltura(2);
-
-        listaObstaculo.add(obstaculos);
-
-        dados.setObstaculos(listaObstaculo);
-        //System.out.println("obstaculos: " + dados.getObstaculos().get(0).getX());
-        //ChamadasFront chamada = new ChamadasFront();
-        //chamada.buscaUniforme(dados);
-        ArrayList<Ponto> pontos = new ArrayList<>();
-        AStar aStar = new AStar();
-        Bidirectional bi = new Bidirectional();
-        UniformCost custoUniforme = new UniformCost();
-        //pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
-        //pontos = aStar.AStar(dados);
-        pontos = bi.bidirectional(dados);
-        System.out.println(pontos.toString());*/
-        //----------------------------------------
         br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
         FileInputStream fis = null;
         BufferedInputStream bis = null;

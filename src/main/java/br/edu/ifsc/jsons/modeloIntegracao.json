@@ -1,20 +1,17 @@
-
 {
 "front": {
 	"dados":{
-		"tamanhoX": 50,
-		"tamanhoY": 50,
+		"tamanhoX": 15,
+		"tamanhoY": 15,
 		"pInicialX": 1,
 		"pInicialY": 1,
-		"pFinalX": 49,
-		"pFinalY": 45,
-		"tipoAlg":4,
+		"pFinalX": 9,
+		"pFinalY": 5,
+		"tipoAlg":2,
 		"obstaculos": [
-			{"x": 5, "y": 4, "larg": 10, "altura": 10},
-			{"x": 27, "y": 27, "larg": 10, "altura": 10}
+			{"x": 3, "y": 1, "larg": 1, "altura": 1}
 		]
 	},
 	"algoritmo": 4
 	}
 }
-

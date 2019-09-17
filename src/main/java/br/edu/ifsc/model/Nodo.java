@@ -19,6 +19,7 @@ public class Nodo {
     private boolean isEnd;
     private boolean Visited;
     private boolean Explored;
+    private String caminho2;
     List<Ponto> caminho = new ArrayList<>();
     // para o A*
     private double peso;
@@ -125,6 +126,14 @@ public class Nodo {
 
     public void setJ(int j) {
         this.j = j;
+    }
+
+    public String getCaminho3() {
+        return caminho2;
+    }
+
+    public void setCaminho3(String caminho2) {
+        this.caminho2 = caminho2;
     }
 
 

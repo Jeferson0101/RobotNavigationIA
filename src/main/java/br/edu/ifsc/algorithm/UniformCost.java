@@ -55,7 +55,7 @@ public class UniformCost {
         while (!fila.isEmpty()) {
             // linha e coluna para visitar os nós vizinhos 
 
-            System.out.println("Inicio");
+            //System.out.println("Inicio");
             // retira o nó atual da lista de nós visitados
             nodoAtual = fila.remove();
             caminho = nodoAtual.getCaminho();

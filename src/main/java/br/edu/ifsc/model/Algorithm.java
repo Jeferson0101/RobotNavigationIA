@@ -39,7 +39,7 @@ public class Algorithm {
     DeepSearch dSearch = new DeepSearch();
     IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
     SearchWidth sWidth = new SearchWidth();
-    Bidirectional bi = new Bidirectional();
+    Bidirectional bidirecional = new Bidirectional();
     UniformCost custoUniforme = new UniformCost();
     AStar aStar = new AStar();
     Gson gson = new Gson();
@@ -62,7 +62,7 @@ public class Algorithm {
                     pontos = iDSearch.iterativeDeepeningSearch(initialmatrix);
                     break;
                 case Bidirecional:
-                    pontos = bi.bidirectional(dados);
+                    pontos = bidirecional.Converter(bidirecional.Buscar(dados));
                     break;
                 case Custo_Uniforme:
                     pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
