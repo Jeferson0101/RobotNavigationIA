@@ -5,6 +5,11 @@
  */
 package br.edu.ifsc.input;
 
+import br.edu.ifsc.model.Matrix;
+import br.edu.ifsc.model.Node;
+import br.edu.ifsc.model.NodeManager;
+import java.util.ArrayList;
+
 /**
  *
  * @author Jeferson
@@ -54,5 +59,17 @@ public class Ponto {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+    public static ArrayList<Ponto> convertMetrixToListPonto(Matrix matrix){    
+        ArrayList<Ponto> list = new ArrayList<>();
+
+        Node[][] nodes = matrix.getNodes();
+        for (int x = 0; x < nodes.length; x++) {
+            for (int y = 0; y < nodes[x].length; y++) {
+                System.out.println(String.format(NodeManager.PATTERNID, x,y));
+                list.add(new Ponto(x,y));
+            }
+        }
+        return list;
     }
 }

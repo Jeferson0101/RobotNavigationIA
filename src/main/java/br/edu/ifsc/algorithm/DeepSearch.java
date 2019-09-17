@@ -6,10 +6,12 @@
 
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.input.Ponto;
 import static br.edu.ifsc.model.Algorithm.validatePosition;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -21,7 +23,7 @@ public class DeepSearch {
     public Stack<Matrix> stack = new Stack<>();
     public int nodeProcessed = 0;
     
-    public Matrix deepSearch(Matrix init) {
+    public ArrayList<Ponto> deepSearch(Matrix init) {
         stack.clear();
         long ini = (System.nanoTime());
         try {
@@ -35,7 +37,7 @@ public class DeepSearch {
                         System.out.println("Terminou no Nivel: " + newNode.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, newNode.level, stack.size()));
                         stack.clear();
-                        return newNode.clone();
+                        return Ponto.convertMetrixToListPonto(newNode.clone());
                     } else {
                         stack.push(newNode);
                     }

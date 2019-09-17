@@ -6,10 +6,12 @@
 
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.input.Ponto;
 import static br.edu.ifsc.model.Algorithm.validatePosition;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -20,8 +22,9 @@ import java.util.Stack;
 public class IterativeDeepeningSearch {
     public Stack<Matrix> stack = new Stack<>();
     public int nodeProcessed = 0;
+    ArrayList<Ponto> pontos = new ArrayList<>();
     
-    public Matrix iterativeDeepeningSearch(Matrix init) {
+    public ArrayList<Ponto> iterativeDeepeningSearch(Matrix init) {
         int initLevel = 1;
         stack.clear();
         long ini = (System.nanoTime());
@@ -40,7 +43,9 @@ public class IterativeDeepeningSearch {
                             System.out.println("Terminou no Nivel: " + matrix.level);
                             System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                             stack.clear();
-                            return matrix.clone();
+                            return Ponto.convertMetrixToListPonto(matrix.clone());
+                           
+                          
                         }
                         stack.push(newNode.clone());
                     }
@@ -51,7 +56,7 @@ public class IterativeDeepeningSearch {
                         System.out.println("Terminou no Nivel: " + matrix.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                         stack.clear();
-                        return matrix.clone();
+                        return Ponto.convertMetrixToListPonto(matrix.clone());
                     }
                 }
                 if (stack.isEmpty()) {

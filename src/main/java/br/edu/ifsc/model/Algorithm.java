@@ -35,8 +35,6 @@ class Algoritmos {
 public class Algorithm {
 
     public static int move;
-    private Matrix result;
-
     public int nodeProcessed = 0;
     DeepSearch dSearch = new DeepSearch();
     IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
@@ -53,15 +51,15 @@ public class Algorithm {
         return node.roboActualPositionX == pFinalX && node.roboActualPositionY == pFinalY;
     }
 
-    public void execute(Matrix initialmatrix, Dados dados) {
+    public ArrayList<Ponto> execute(Matrix initialmatrix, Dados dados) {
         try {
             long init = System.nanoTime();
             switch (dados.getTipoAlg()) {
                 case Busca_Profundidade:
-                    result = dSearch.deepSearch(initialmatrix);
+                    pontos = dSearch.deepSearch(initialmatrix);
                     break;
                 case Profundidade_Interativa:
-                    result = iDSearch.iterativeDeepeningSearch(initialmatrix);
+                    pontos = iDSearch.iterativeDeepeningSearch(initialmatrix);
                     break;
                 case Bidirecional:
                     pontos = bi.bidirectional(dados);
@@ -73,7 +71,7 @@ public class Algorithm {
                     pontos = aStar.AStar(dados);
                     break;
                 case Largura:
-                    result = sWidth.searchWidth(initialmatrix);
+                    pontos = sWidth.searchWidth(initialmatrix);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + dados.getTipoAlg());
@@ -91,6 +89,7 @@ public class Algorithm {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return null;
     }
 
 }
