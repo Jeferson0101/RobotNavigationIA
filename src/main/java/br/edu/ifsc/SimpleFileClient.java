@@ -20,7 +20,7 @@ import java.net.Socket;
 
 public class SimpleFileClient {
 
-    public final static int SOCKET_PORT = 5501;
+    public final static int SOCKET_PORT = 8081;
     public final static String SERVER = "127.0.0.1";
     
     public final static String FILE_TO_SEND = "C:\\Users\\Jeferson\\Documents\\modeloIntegracao.json";

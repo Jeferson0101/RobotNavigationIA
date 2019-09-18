@@ -5,6 +5,7 @@ import br.edu.ifsc.algorithm.Bidirectional;
 import br.edu.ifsc.algorithm.UniformCost;
 import br.edu.ifsc.input.*;
 import br.edu.ifsc.model.Algorithm;
+import br.edu.ifsc.model.Leitor;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
 import br.edu.ifsc.model.Robot;
@@ -32,7 +33,7 @@ import java.util.logging.Logger;
  */
 public class Main {
 
-    public final static int SOCKET_PORT = 5501;
+    public final static int SOCKET_PORT = 8081;
     public final static int FILE_SIZE = 4096;
     public final static String basePath = new File("").getAbsolutePath();
     public final static String s = File.separator;
@@ -41,7 +42,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        br.edu.ifsc.model.Leitor leitor = new br.edu.ifsc.model.Leitor();
+        Leitor leitor = new Leitor();
         FileInputStream fis = null;
         BufferedInputStream bis = null;
         OutputStream os = null;
@@ -63,6 +64,7 @@ public class Main {
                     // receive file
                     byte[] mybytearray = new byte[FILE_SIZE];
                     InputStream is = sock.getInputStream();
+                    
                     fos = new FileOutputStream(FILE_TO_RECEIVED);
                     bos = new BufferedOutputStream(fos);
                     bytesRead = is.read(mybytearray, 0, mybytearray.length);
