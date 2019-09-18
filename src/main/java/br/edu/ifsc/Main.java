@@ -36,7 +36,7 @@ public class Main {
     public final static int FILE_SIZE = 4096;
     public final static String basePath = new File("").getAbsolutePath();
     public final static String s = File.separator;
-    public final static String FILE_TO_SEND = "C:\\Users\\cesar\\Documents\\Projetos\\resultado.json";
+    public final static String FILE_TO_SEND = "C:\\Users\\Jeferson\\Documents\\RobotNavigationIA\\src\\main\\java\\br\\edu\\ifsc\\jsons\\resultado.json";
     public final static String FILE_TO_RECEIVED = basePath + String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%smodeloIntegracao.json", s, s, s, s, s, s, s, s);
 
     public static void main(String[] args) throws IOException {

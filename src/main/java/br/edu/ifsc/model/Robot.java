@@ -6,6 +6,7 @@
 package br.edu.ifsc.model;
 
 import java.io.BufferedInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,24 +24,30 @@ public class Robot {
     BufferedInputStream bis = null;
     OutputStream os = null;
     Socket sock = null;
-    public final static int SOCKET_PORT = 6666;
-    public final static String SERVER = "127.0.0.1";
-    public final static String FILE_TO_SEND = "C:\\Users\\cesar\\Documents\\Projetos\\resultado.json";
+    private DataOutputStream mDataOutputStream;
+    public final static int SOCKET_PORT = 23;
+    public final static String SERVER = "192.168.0.112";
+    public final static String FILE_TO_SEND = "C:\\Users\\Jeferson\\Documents\\RobotNavigationIA\\src\\main\\java\\br\\edu\\ifsc\\jsons\\resultado.json";
 
     public void Enviar(String msg) throws IOException {
         try {
+            
+            System.out.println("Connecting to "+ SERVER +" at port "+ SOCKET_PORT + "...");
             sock = new Socket(SERVER, SOCKET_PORT);
-            System.out.println("Connecting...");
-
+            System.out.println("Mensagem: " + msg);
+            mDataOutputStream = new DataOutputStream(this.sock.getOutputStream());
+            mDataOutputStream.writeUTF(msg);
+            //mDataOutputStream.wait(1000);
             // send msg
             //String mensagem="jogada 1";
-            PrintWriter out = new PrintWriter(sock.getOutputStream(),true);
-            out.println(msg);
-            out.close();
-            sock.close();
+            //PrintWriter out = new PrintWriter(sock.getOutputStream(),true);
+            
+            //out.println(msg);
+            //out.close();
+            //sock.close();
 
         } catch (Exception ex) {
-            System.out.println("Conexão fechada");
+            System.out.println("Conexão fechada inesperada");
         } finally {
             if (bis != null) {
                 //bis.close();

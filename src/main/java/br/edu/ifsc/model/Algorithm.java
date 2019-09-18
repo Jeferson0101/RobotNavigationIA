@@ -43,7 +43,7 @@ public class Algorithm {
     UniformCost custoUniforme = new UniformCost();
     AStar aStar = new AStar();
     Gson gson = new Gson();
-    String output = "C:\\Users\\cesar\\Documents\\Projetos\\resultado.json";
+    String output = "C:\\Users\\Jeferson\\Documents\\RobotNavigationIA\\src\\main\\java\\br\\edu\\ifsc\\jsons\\resultado.json";
 
     ArrayList<Ponto> pontos = new ArrayList<>();
 

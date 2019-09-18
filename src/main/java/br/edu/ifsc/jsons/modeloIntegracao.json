@@ -3,8 +3,8 @@
 	"dados":{
 		"tamanhoX": 15,
 		"tamanhoY": 15,
-		"pInicialX": 1,
-		"pInicialY": 1,
+		"pInicialX": 3,
+		"pInicialY": 3,
 		"pFinalX": 9,
 		"pFinalY": 5,
 		"tipoAlg":2,
