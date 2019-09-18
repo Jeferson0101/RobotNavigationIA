@@ -16,8 +16,16 @@ import br.edu.ifsc.input.Obstaculo;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
+import br.edu.ifsc.model.Robot;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,15 +40,19 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         jBBuscar.setEnabled(false);
-        
+
     }
+    public Robot robo = new Robot();
+
+    Gson gson = new Gson();
+                
+            
     Dados dados = new Dados();
     Obstaculo obstaculos;
     List<Obstaculo> listaObstaculo = new ArrayList<>();
     ArrayList<Ponto> pontos = new ArrayList<>();
     Resultado r;
     Matrix matrix;
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -264,34 +276,40 @@ public class MainFrame extends javax.swing.JFrame {
             DeepSearch dSearch = new DeepSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = dSearch.deepSearch(matrix);
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 1) {
             r = new Resultado();
             IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = iDSearch.iterativeDeepeningSearch(matrix);
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 2) {
             r = new Resultado();
             Bidirectional bidirecional = new Bidirectional();
             pontos = bidirecional.Converter(bidirecional.Buscar(dados));
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 3) {
             r = new Resultado();
             UniformCost custoUniforme = new UniformCost();
             pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 4) {
             r = new Resultado();
             AStar aStar = new AStar();
             pontos = aStar.AStar(dados);
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 5) {
             r = new Resultado();
             SearchWidth sWidth = new SearchWidth();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = sWidth.searchWidth(matrix);
-            r.Resultado(dados,pontos);
+            r.Resultado(dados, pontos);
+        }
+
+        try {
+            robo.Enviar(gson.toJson(pontos));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
@@ -336,7 +354,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
-                
+
             }
         });
     }
