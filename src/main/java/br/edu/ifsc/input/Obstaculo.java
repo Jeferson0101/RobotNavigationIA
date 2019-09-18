@@ -2,15 +2,16 @@ package br.edu.ifsc.input;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author Felipe
  */
 
 public class Obstaculo {
-    
-    public Obstaculo(){
-        
+
+    public Obstaculo() {
+
     }
     @SerializedName("x")
     @Expose
@@ -55,6 +56,11 @@ public class Obstaculo {
 
     public void setAltura(int altura) {
         this.altura = altura;
+    }
+
+    @Override
+    public String toString() {
+        return "Obstaculo{" + "x=" + x + ", y=" + y + ", larg=" + larg + ", altura=" + altura + '}';
     }
 
 }

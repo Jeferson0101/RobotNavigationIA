@@ -31,12 +31,16 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        jBBuscar.setEnabled(false);
+        
     }
     Dados dados = new Dados();
-    Obstaculo obstaculos = new Obstaculo();
+    Obstaculo obstaculos;
     List<Obstaculo> listaObstaculo = new ArrayList<>();
     ArrayList<Ponto> pontos = new ArrayList<>();
+    Resultado r;
     Matrix matrix;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,13 +72,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTxtObsY = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTxtObsLarg = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTxtObsAlt = new javax.swing.JTextField();
         jBAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Plano B");
+        setName(""); // NOI18N
 
         jCSelecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busca em Profundidade", "Profundidade Interativa", "Bidirecional", "Custo Uniforme", "A Estrela", "Largura" }));
         jCSelecao.addActionListener(new java.awt.event.ActionListener() {
@@ -115,10 +117,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Y:");
 
-        jLabel10.setText("Altura:");
-
-        jLabel11.setText("Largura:");
-
         jBAdicionar.setText("Adicionar");
         jBAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +130,7 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -141,15 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtObsY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTxtObsLarg))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtObsAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTxtObsY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -167,17 +157,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jTxtObsX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtObsY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTxtObsLarg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTxtObsAlt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jBAdicionar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,6 +169,11 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBCriar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -213,18 +200,12 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addGap(20, 20, 20)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTxtInicioY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTxtInicioY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBBuscar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jBCriar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addComponent(jBBuscar)))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,11 +232,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jBCriar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCSelecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBBuscar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,45 +254,53 @@ public class MainFrame extends javax.swing.JFrame {
         dados.setPFinalX(Integer.parseInt(jTxtFinalX.getText()));
         dados.setPFinalY(Integer.parseInt(jTxtFinalY.getText()));
         JOptionPane.showMessageDialog(rootPane, "Criado com sucesso");
+        jBBuscar.setEnabled(true);
     }//GEN-LAST:event_jBCriarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         dados.setObstaculos(listaObstaculo);
         if (jCSelecao.getSelectedIndex() == 0) {
+            r = new Resultado();
             DeepSearch dSearch = new DeepSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = dSearch.deepSearch(matrix);
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         } else if (jCSelecao.getSelectedIndex() == 1) {
+            r = new Resultado();
             IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = iDSearch.iterativeDeepeningSearch(matrix);
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         } else if (jCSelecao.getSelectedIndex() == 2) {
+            r = new Resultado();
             Bidirectional bidirecional = new Bidirectional();
             pontos = bidirecional.Converter(bidirecional.Buscar(dados));
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         } else if (jCSelecao.getSelectedIndex() == 3) {
+            r = new Resultado();
             UniformCost custoUniforme = new UniformCost();
             pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         } else if (jCSelecao.getSelectedIndex() == 4) {
+            r = new Resultado();
             AStar aStar = new AStar();
             pontos = aStar.AStar(dados);
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         } else if (jCSelecao.getSelectedIndex() == 5) {
+            r = new Resultado();
             SearchWidth sWidth = new SearchWidth();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = sWidth.searchWidth(matrix);
-            JOptionPane.showMessageDialog(rootPane, pontos.toString());
+            r.Resultado(dados,pontos);
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
+        obstaculos = new Obstaculo();
         obstaculos.setX(Integer.parseInt(jTxtObsX.getText()));
         obstaculos.setY(Integer.parseInt(jTxtObsY.getText()));
-        obstaculos.setLarg(Integer.parseInt(jTxtObsLarg.getText()));
-        obstaculos.setAltura(Integer.parseInt(jTxtObsAlt.getText()));
+        obstaculos.setLarg(1);
+        obstaculos.setAltura(1);
         listaObstaculo.add(obstaculos);
         JOptionPane.showMessageDialog(rootPane, "Obstaculo adicionado com sucesso");
     }//GEN-LAST:event_jBAdicionarActionPerformed
@@ -347,6 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
+                
             }
         });
     }
@@ -357,8 +347,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jBCriar;
     private javax.swing.JComboBox<String> jCSelecao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -372,8 +360,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtFinalY;
     private javax.swing.JTextField jTxtInicioX;
     private javax.swing.JTextField jTxtInicioY;
-    private javax.swing.JTextField jTxtObsAlt;
-    private javax.swing.JTextField jTxtObsLarg;
     private javax.swing.JTextField jTxtObsX;
     private javax.swing.JTextField jTxtObsY;
     private javax.swing.JTextField jTxtTamanhoX;
