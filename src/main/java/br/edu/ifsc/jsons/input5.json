@@ -7,7 +7,7 @@
       "pInicialY": 3,
       "pFinalX": 3,
       "pFinalY": 3,
-      "tipoAlg": 0,
+      "tipoAlg": 5,
       "obstaculos": [
         {
           "x": 2,

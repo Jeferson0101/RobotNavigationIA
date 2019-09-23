@@ -192,6 +192,9 @@
     <Component class="javax.swing.JTextField" name="jTxtInicioY">
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtFinalY">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtFinalYActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtTamanhoY">
     </Component>

@@ -5,13 +5,15 @@
  */
 package br.edu.ifsc.model;
 
+import br.edu.ifsc.input.Ponto;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Matrix implements Cloneable {
 
     public int level;
     private Node[][] nodes;
-    private StringBuilder moves = new StringBuilder();
+    private ArrayList<Ponto> moves = new ArrayList<>();
     public static int tamanhoX;
     public static int tamanhoY;
     public int roboActualPositionX;
@@ -24,9 +26,10 @@ public class Matrix implements Cloneable {
     }
 
     public Matrix() {
+        moves = new ArrayList<Ponto>();
     }
 
-    public StringBuilder getMoves() {
+    public ArrayList<Ponto> getMoves() {
         return moves;
     }
 
@@ -84,7 +87,7 @@ public class Matrix implements Cloneable {
         this.roboActualPositionY = roboActualPositionY;
     }
 
-    public void setMoves(StringBuilder stringBuilder) {
+    public void setMoves(ArrayList<Ponto> stringBuilder) {
         this.moves = stringBuilder;
     }
 }

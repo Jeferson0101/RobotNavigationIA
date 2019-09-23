@@ -17,7 +17,7 @@ import java.util.Stack;
 
 /**
  *
- * @author Aluno
+ * @author Felip
  */
 public class DeepSearch {
     public Stack<Matrix> stack = new Stack<>();
@@ -37,7 +37,8 @@ public class DeepSearch {
                         System.out.println("Terminou no Nivel: " + newNode.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, newNode.level, stack.size()));
                         stack.clear();
-                        return Ponto.convertMetrixToListPonto(newNode.clone());
+                        return newNode.clone().getMoves();
+                       
                     } else {
                         stack.push(newNode);
                     }

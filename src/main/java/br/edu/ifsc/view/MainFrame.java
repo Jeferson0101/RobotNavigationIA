@@ -123,6 +123,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Y:");
 
+        jTxtFinalY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFinalYActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Obstaculo:");
 
         jLabel8.setText("X:");
@@ -276,7 +282,10 @@ public class MainFrame extends javax.swing.JFrame {
             DeepSearch dSearch = new DeepSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
             pontos = dSearch.deepSearch(matrix);
+            
             r.Resultado(dados, pontos);
+            
+            
         } else if (jCSelecao.getSelectedIndex() == 1) {
             r = new Resultado();
             IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
@@ -322,6 +331,10 @@ public class MainFrame extends javax.swing.JFrame {
         listaObstaculo.add(obstaculos);
         JOptionPane.showMessageDialog(rootPane, "Obstaculo adicionado com sucesso");
     }//GEN-LAST:event_jBAdicionarActionPerformed
+
+    private void jTxtFinalYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFinalYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFinalYActionPerformed
 
     /**
      * @param args the command line arguments

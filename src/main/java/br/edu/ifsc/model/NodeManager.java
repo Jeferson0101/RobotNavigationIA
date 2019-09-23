@@ -2,6 +2,7 @@ package br.edu.ifsc.model;
 
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Obstaculo;
+import br.edu.ifsc.input.Ponto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,8 +121,9 @@ public class NodeManager {
                 Matrix newMatrix = new Matrix(newNode);
                 newMatrix.setRoboActualPositionX(init.getRoboActualPositionX());
                 newMatrix.setRoboActualPositionY(init.getRoboActualPositionY());
+                newMatrix.setMoves((ArrayList<Ponto>)init.getMoves().clone());
                 newMatrix.level = init.level;
-                newMatrix.getMoves().append(new String(init.getMoves().toString().getBytes()));
+                //newMatrix.getMoves().add(new Ponto(init.getRoboActualPositionX(), init.getRoboActualPositionY()));
                 list.add(newMatrix);
             }
             int index = 0;
@@ -131,28 +133,28 @@ public class NodeManager {
                         Node nineClone = list.get(index).getNodes()[x - 1][y].clone();
                         list.get(index).getNodes()[x - 1][y] = list.get(index).getNodes()[x][y].clone();
                         list.get(index).getNodes()[x][y] = nineClone;
-                        list.get(index).getMoves().append(String.format(NodeManager.PATTERNID, x, y));
+                        list.get(index).getMoves().add(new Ponto(x, y));
                         list.get(index).setRoboActualPositionX(x);
                         index++;
                     } else if (list.get(index).getNodes()[x][y].isRight()) {
                         Node nineClone = list.get(index).getNodes()[x + 1][y].clone();
                         list.get(index).getNodes()[x + 1][y] = list.get(index).getNodes()[x][y].clone();
                         list.get(index).getNodes()[x][y] = nineClone;
-                        list.get(index).getMoves().append(String.format(NodeManager.PATTERNID, x, y));
+                        list.get(index).getMoves().add(new Ponto(x, y));
                         list.get(index).setRoboActualPositionX(x);
                         index++;
                     } else if (list.get(index).getNodes()[x][y].isUp()) {
                         Node nineClone = list.get(index).getNodes()[x][y - 1].clone();
                         list.get(index).getNodes()[x][y - 1] = list.get(index).getNodes()[x][y].clone();
                         list.get(index).getNodes()[x][y] = nineClone;
-                        list.get(index).getMoves().append(String.format(NodeManager.PATTERNID, x, y));
+                        list.get(index).getMoves().add(new Ponto(x, y));
                         list.get(index).setRoboActualPositionY(y);
                         index++;
                     } else if (list.get(index).getNodes()[x][y].isDown()) {
                         Node nineClone = list.get(index).getNodes()[x][y + 1].clone();
                         list.get(index).getNodes()[x][y + 1] = list.get(index).getNodes()[x][y].clone();
                         list.get(index).getNodes()[x][y] = nineClone;
-                        list.get(index).getMoves().append(String.format(NodeManager.PATTERNID, x, y));
+                        list.get(index).getMoves().add(new Ponto(x, y));
                         list.get(index).setRoboActualPositionY(y);
                         index++;
                     }
@@ -175,7 +177,7 @@ public class NodeManager {
         initialMatrix.setNodes(initNode);
         initialMatrix.setRoboActualPositionX(dados.getPInicialX());
         initialMatrix.setRoboActualPositionY(dados.getPInicialY());
-        initialMatrix.getMoves().append(String.format(NodeManager.PATTERNID, dados.getPInicialX(), dados.getPInicialY()));
+        initialMatrix.getMoves().add(new Ponto(dados.getPInicialX(), dados.getPInicialY()));
         return initialMatrix;
     }
 }

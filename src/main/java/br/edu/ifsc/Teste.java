@@ -27,7 +27,7 @@ public class Teste {
         try {
             String basePath = new File("").getAbsolutePath();
             String s = File.separator;
-            front = Front.convertJsonInputToFrontObject(basePath + String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%sinput4.json",s,s,s,s,s,s,s,s));
+            front = Front.convertJsonInputToFrontObject(basePath + String.format("%ssrc%smain%sjava%sbr%sedu%sifsc%sjsons%sinput3.json",s,s,s,s,s,s,s,s));
             front_ = front.getFront();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

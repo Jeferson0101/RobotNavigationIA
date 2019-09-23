@@ -17,7 +17,7 @@ import java.util.Stack;
 
 /**
  *
- * @author Aluno
+ * @author Felip
  */
 public class IterativeDeepeningSearch {
     public Stack<Matrix> stack = new Stack<>();
@@ -43,7 +43,7 @@ public class IterativeDeepeningSearch {
                             System.out.println("Terminou no Nivel: " + matrix.level);
                             System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                             stack.clear();
-                            return Ponto.convertMetrixToListPonto(matrix.clone());
+                            return matrix.clone().getMoves();
                            
                           
                         }
@@ -56,7 +56,7 @@ public class IterativeDeepeningSearch {
                         System.out.println("Terminou no Nivel: " + matrix.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                         stack.clear();
-                        return Ponto.convertMetrixToListPonto(matrix.clone());
+                        return matrix.clone().getMoves();
                     }
                 }
                 if (stack.isEmpty()) {

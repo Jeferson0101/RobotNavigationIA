@@ -7,7 +7,6 @@
 package br.edu.ifsc.algorithm;
 
 import br.edu.ifsc.input.Ponto;
-import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
 import java.time.LocalTime;
@@ -18,7 +17,7 @@ import java.util.Queue;
 
 /**
  *
- * @author Aluno
+ * @author Felip
  */
 public class SearchWidth {
     public Queue<Matrix> queue = new ArrayDeque<>();
@@ -39,7 +38,7 @@ public class SearchWidth {
                         System.out.println("Terminou no Nivel: " + newNode.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, newNode.level, queue.size()));
                         queue.clear();
-                        return Ponto.convertMetrixToListPonto(newNode.clone());
+                        return newNode.clone().getMoves();
                     } else {
                         queue.add(newNode.clone());
                     }
