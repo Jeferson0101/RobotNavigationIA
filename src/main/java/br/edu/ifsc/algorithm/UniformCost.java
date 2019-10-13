@@ -22,7 +22,7 @@ public class UniformCost {
     public List<Ponto> Buscar(Dados dados) {
 
         // caminho que será retornado
-        List<Ponto> caminho;
+        ArrayList<Ponto> caminhoFinal = new ArrayList<>();
         //List de Pontos caso der failure ele retornará esta List
         ArrayList<Ponto> failure = new ArrayList<>();
         int linha, coluna;
@@ -36,16 +36,20 @@ public class UniformCost {
             for (int j = 0; j < dados.getTamanhoY(); j++) {
                 if (nodo[i][j] == null) {
                     nodo[i][j] = new Nodo(i, j);
+                    nodo[i][j].setCaminho3(i + ":" + j);
                 }
             }
         }
 
-//        for (int i = 0; i < dados.getObstaculos().size(); i++) {
-//            nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()].setIsObstacle(Boolean.TRUE);
-//        }
+        for (int i = 0; i < dados.getObstaculos().size(); i++) {
+            nodo[dados.getObstaculos().get(i).getX()][dados.getObstaculos().get(i).getY()].setIsObstacle(Boolean.TRUE);
+        }
         // seta o nó de saída
         nodo[dados.getPInicialX()][dados.getPInicialY()].setIsStart(Boolean.TRUE);
-        nodo[dados.getPInicialX()][dados.getPInicialY()].setCaminho(new Ponto(dados.getPInicialX(), dados.getPInicialY()));
+        nodo[dados.getPInicialX()][dados.getPInicialY()].setVisited(Boolean.TRUE);
+
+        nodo[dados.getPInicialX()][dados.getPInicialY()].setCaminho3(dados.getPInicialX() + ":" + dados.getPInicialX());
+
         // seta o nó de chegada 
         nodo[dados.getPFinalX()][dados.getPFinalY()].setIsEnd(Boolean.TRUE);
 
@@ -58,7 +62,7 @@ public class UniformCost {
             //System.out.println("Inicio");
             // retira o nó atual da lista de nós visitados
             nodoAtual = fila.remove();
-            caminho = nodoAtual.getCaminho();
+            String caminho = nodoAtual.getCaminho3();
 
             linha = nodoAtual.getI() + 1;
             coluna = nodoAtual.getJ();
@@ -66,8 +70,8 @@ public class UniformCost {
             /*[ ][ ][ ]
              [ ][x][ ]
              [ ][x][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
             coluna++;
             linha--;
@@ -75,24 +79,24 @@ public class UniformCost {
             /*[ ][ ][ ]
              [ ][x][x]
              [ ][ ][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
             linha--;
             coluna--;
             /*[ ][x][ ]
              [ ][x][ ]
              [ ][ ][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
             linha++;
             coluna--;
             /*[ ][ ][ ]
              [x][x][ ]
              [ ][ ][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
 
             //diagonais
@@ -100,54 +104,58 @@ public class UniformCost {
             /*[ ][ ][ ]
              [ ][x][ ]
              [x][x][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
 
             coluna = coluna + 2;
             /*[ ][ ][ ]
              [ ][x][ ]
              [ ][ ][x]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
 
             linha = linha - 2;
             /*[ ][ ][x]
              [ ][x][ ]
              [ ][ ][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
 
             coluna = coluna - 2;
             /*[x][ ][ ]
              [ ][x][ ]
              [ ][ ][ ]*/
-            if (Verifica(nodo, linha, coluna, caminho, fila, dados)) {
-                return caminho;
+            if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
+                return caminhoFinal;
             }
         }
         System.out.println("Cabou os nodos da lista");
         return failure;
     }
 
-    public boolean Verifica(Nodo[][] nodo, int linha, int coluna, List<Ponto> caminho, Queue<Nodo> fila, Dados dados) {
+    public boolean Verifica(Nodo[][] nodo, int linha, int coluna, String caminho, ArrayList<Ponto> caminhoFinal, Queue<Nodo> fila, Dados dados) {
         try {
             if (!(linha < 0 || linha > dados.getTamanhoX() || coluna < 0 | coluna > dados.getTamanhoY())) {
                 if (nodo[linha][coluna] != null) {
-                    if (!nodo[linha][coluna].isIsStart()) {
-                        if (!nodo[linha][coluna].isIsObstacle()) {
-                            if (!nodo[linha][coluna].isIsEnd()) {
-                                nodo[linha][coluna].setVisited(Boolean.TRUE);
-                            // pega o caminho do nodo atual E adiciona um novo ponto
+                    if (!nodo[linha][coluna].isVisited()) {
+                        if (!nodo[linha][coluna].isIsStart()) {
+                            if (!nodo[linha][coluna].isIsObstacle()) {
+                                if (!nodo[linha][coluna].isIsEnd()) {
+                                    nodo[linha][coluna].setVisited(Boolean.TRUE);
+                                    // pega o caminho do nodo atual E adiciona um novo ponto
 
-                                nodo[linha][coluna].setCaminho2(caminho, new Ponto(linha, coluna));
-                                fila.add(nodo[linha][coluna]);
-                            } else {
-                                System.out.println("Entrei");
-                                System.out.println(caminho.toString());
-                                return true;
+                                    nodo[linha][coluna].setCaminho3(caminho + ";" + linha + ":" + coluna);
+                                    fila.add(nodo[linha][coluna]);
+                                } else {
+                                    // acrescenta a última coordenada!
+                                    caminho = caminho + ";" + linha + ":" + coluna;
+                                    Converter(caminho, caminhoFinal);
+                                    System.out.println(caminho);
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -161,6 +169,18 @@ public class UniformCost {
             return false;
         }
         return false;
+    }
+
+    public ArrayList<Ponto> Converter(String pontos, ArrayList<Ponto> caminho) {
+
+        String[] ponto = pontos.split(";");
+        for (String s : ponto) {
+            String[] n = s.split(":");
+            int x = Integer.parseInt(n[0]);
+            int y = Integer.parseInt(n[1]);
+            caminho.add(new Ponto(x, y));
+        }
+        return caminho;
     }
 
 }

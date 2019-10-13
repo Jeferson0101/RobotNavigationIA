@@ -98,8 +98,7 @@ public class Nodo {
     
     
     public void setCaminho2(List<Ponto> caminho, Ponto novoPonto) {
-        this.caminho.clear();
-        this.caminho.addAll(caminho);
+        this.caminho = caminho;
         this.caminho.add(novoPonto);
     }
 
