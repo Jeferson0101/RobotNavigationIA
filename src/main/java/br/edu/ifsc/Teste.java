@@ -8,7 +8,6 @@ package br.edu.ifsc;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Front;
 import br.edu.ifsc.input.Front_;
-import br.edu.ifsc.model.Algorithm;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
 import java.io.File;
@@ -33,8 +32,8 @@ public class Teste {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         Dados dados = front_.getDados();
-        Algorithm algorithm = new Algorithm();
-        Matrix matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
-        algorithm.execute(matrix, dados);
+//        Algorithm algorithm = new Algorithm();
+//        Matrix matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
+//        algorithm.execute(matrix, dados);
     }
 }

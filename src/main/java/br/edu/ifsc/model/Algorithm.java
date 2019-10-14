@@ -67,9 +67,9 @@ public class Algorithm {
                 case Custo_Uniforme:
                     pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
                     break;
-                case A_Estrela:
-                    pontos = aStar.AStar(dados);
-                    break;
+//                case A_Estrela:
+//                    pontos = aStar.AStar(dados);
+//                    break;
                 case Largura:
                     pontos = sWidth.searchWidth(initialmatrix);
                     break;

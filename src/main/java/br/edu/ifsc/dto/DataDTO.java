@@ -49,4 +49,14 @@ public class DataDTO {
     public void setTempoExecucao(long tempoExecucao) {
         this.tempoExecucao = tempoExecucao;
     }
+
+    @Override
+    public String toString() {
+        return "DataDTO{" +
+                "pontos=" + pontos +
+                ", nodosGerados=" + nodosGerados +
+                ", nodosExpandidos=" + nodosExpandidos +
+                ", tempoExecucao=" + tempoExecucao +
+                '}';
+    }
 }

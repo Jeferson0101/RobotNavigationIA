@@ -303,10 +303,10 @@ public class MainFrame extends javax.swing.JFrame {
             pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
             r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 4) {
-            r = new Resultado();
-            AStar aStar = new AStar();
-            pontos = aStar.AStar(dados);
-            r.Resultado(dados, pontos);
+//            r = new Resultado();
+//            AStar aStar = new AStar();
+//           // pontos = aStar.AStar(dados);
+//            r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 5) {
             r = new Resultado();
             SearchWidth sWidth = new SearchWidth();
