@@ -220,6 +220,9 @@ public class UniformCost {
             int x = Integer.parseInt(n[0]);
             int y = Integer.parseInt(n[1]);
             caminho.add(new Ponto(x, y));
+            // Como ele só visita. não toma decisão por distância ou heurística neste caso em específico(até poderia fazer por 1 ou 1.4). Mas por fim
+            // ficou mesma distância para qualquer lado. Logo, tive que fazer os Expandidos aqui aproveitando a passagem por todas coordenadas do
+            // caminho gerado
             nodosExpandidos++;
         }
         return caminho;
