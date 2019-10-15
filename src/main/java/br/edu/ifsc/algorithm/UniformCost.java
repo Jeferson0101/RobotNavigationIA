@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Nodo;
@@ -19,12 +20,18 @@ import java.util.Queue;
  */
 public class UniformCost {
 
-    public List<Ponto> Buscar(Dados dados) {
+    int nodosGerados;
+    int nodosExpandidos;
+    long resultTime;
+
+    public DataDTO Buscar(Dados dados) {
+        // inicializa as variáveis
+        nodosGerados = 0;
+        nodosExpandidos = 0;
+        long startTime = System.currentTimeMillis();
 
         // caminho que será retornado
         ArrayList<Ponto> caminhoFinal = new ArrayList<>();
-        //List de Pontos caso der failure ele retornará esta List
-        ArrayList<Ponto> failure = new ArrayList<>();
         int linha, coluna;
         Nodo[][] nodo = new Nodo[dados.getTamanhoX()][dados.getTamanhoY()];
         // fila onde será guardado os nós conforme forem visitados
@@ -71,7 +78,11 @@ public class UniformCost {
              [ ][x][ ]
              [ ][x][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
             coluna++;
             linha--;
@@ -80,7 +91,11 @@ public class UniformCost {
              [ ][x][x]
              [ ][ ][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
             linha--;
             coluna--;
@@ -88,7 +103,11 @@ public class UniformCost {
              [ ][x][ ]
              [ ][ ][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
             linha++;
             coluna--;
@@ -96,7 +115,11 @@ public class UniformCost {
              [x][x][ ]
              [ ][ ][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
 
             //diagonais
@@ -105,7 +128,11 @@ public class UniformCost {
              [ ][x][ ]
              [x][x][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
 
             coluna = coluna + 2;
@@ -113,7 +140,11 @@ public class UniformCost {
              [ ][x][ ]
              [ ][ ][x]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
 
             linha = linha - 2;
@@ -121,7 +152,11 @@ public class UniformCost {
              [ ][x][ ]
              [ ][ ][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
 
             coluna = coluna - 2;
@@ -129,11 +164,15 @@ public class UniformCost {
              [ ][x][ ]
              [ ][ ][ ]*/
             if (Verifica(nodo, linha, coluna, caminho, caminhoFinal, fila, dados)) {
-                return caminhoFinal;
+                long stopTime = System.currentTimeMillis();
+                long resultTime = stopTime - startTime;
+                DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
+                return dto;
+                
             }
         }
         System.out.println("Cabou os nodos da lista");
-        return failure;
+        return new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
     }
 
     public boolean Verifica(Nodo[][] nodo, int linha, int coluna, String caminho, ArrayList<Ponto> caminhoFinal, Queue<Nodo> fila, Dados dados) {
@@ -144,13 +183,15 @@ public class UniformCost {
                         if (!nodo[linha][coluna].isIsStart()) {
                             if (!nodo[linha][coluna].isIsObstacle()) {
                                 if (!nodo[linha][coluna].isIsEnd()) {
+                                    nodosGerados++;
                                     nodo[linha][coluna].setVisited(Boolean.TRUE);
                                     // pega o caminho do nodo atual E adiciona um novo ponto
-
+                                    
                                     nodo[linha][coluna].setCaminho3(caminho + ";" + linha + ":" + coluna);
                                     fila.add(nodo[linha][coluna]);
                                 } else {
                                     // acrescenta a última coordenada!
+                                    
                                     caminho = caminho + ";" + linha + ":" + coluna;
                                     Converter(caminho, caminhoFinal);
                                     System.out.println(caminho);
@@ -179,6 +220,7 @@ public class UniformCost {
             int x = Integer.parseInt(n[0]);
             int y = Integer.parseInt(n[1]);
             caminho.add(new Ponto(x, y));
+            nodosExpandidos++;
         }
         return caminho;
     }

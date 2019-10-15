@@ -26,7 +26,7 @@ public class Robot {
     Socket sock = null;
     private DataOutputStream mDataOutputStream;
     public final static int SOCKET_PORT = 23;
-    public final static String SERVER = "192.168.0.112";
+    public final static String SERVER = "192.168.0.107";
     public final static String FILE_TO_SEND = "C:\\Users\\Jeferson\\Documents\\RobotNavigationIA\\src\\main\\java\\br\\edu\\ifsc\\jsons\\resultado.json";
 
     public void Enviar(String msg) throws IOException {
