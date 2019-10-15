@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Nodo;
@@ -15,14 +16,19 @@ import java.util.Queue;
 
 /**
  *
- * @author Aluno
+ * @author Cesar
  */
 public class Bidirectional {
 
     Queue<Nodo> saida = new LinkedList<Nodo>();
     Queue<Nodo> chegada = new LinkedList<Nodo>();
+    int nodosGerados;
+    int nodosExpandidos;
+    long resultTime;
+    String resultado;
 
-    public String Buscar(Dados dados) {
+    public DataDTO Buscar(Dados dados) {
+        long startTime = System.currentTimeMillis();
         Nodo[][] nodo = new Nodo[dados.getTamanhoX()][dados.getTamanhoY()];
 
         for (int i = 0; i < dados.getTamanhoX(); i++) {
@@ -61,6 +67,7 @@ public class Bidirectional {
         while (!saida.isEmpty() || !chegada.isEmpty()) {
             int i, j;
             if (!saida.isEmpty()) {
+                nodosExpandidos++;
                 Nodo nodoA = saida.remove();
                 String caminho = nodoA.getCaminho3();
                 i = nodoA.getI() + 1;
@@ -71,11 +78,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -89,11 +101,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -107,11 +124,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -125,11 +147,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -142,11 +169,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -159,11 +191,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -176,11 +213,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -193,11 +235,16 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isExplored()) {
                                     nodo[i][j].setVisited(true);
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     //caminho.add(new Ponto(i, j));
                                     saida.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -205,6 +252,7 @@ public class Bidirectional {
                 }
             }
             if (!chegada.isEmpty()) {
+                nodosExpandidos++;
                 Nodo nodoB = chegada.remove();
                 //caminho = (ArrayList<Ponto>) nodoB.getCaminho();
                 String caminho = nodoB.getCaminho3();
@@ -216,11 +264,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -235,11 +287,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -254,11 +310,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -272,11 +332,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -290,11 +354,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -308,11 +376,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -326,11 +398,15 @@ public class Bidirectional {
                             if (!nodo[i][j].isIsObstacle()) {
                                 if (!nodo[i][j].isVisited()) {
                                     nodo[i][j].setExplored(true);
-
+                                    nodosGerados++;
                                     nodo[i][j].setCaminho3(caminho + ";" + i + ":" + j);
                                     chegada.add(nodo[i][j]);
                                 } else {
-                                    return caminho + nodo[i][j].getCaminho3();
+                                    long stopTime = System.currentTimeMillis();
+                                    long resultTime = stopTime - startTime;
+                                    resultado = caminho + nodo[i][j].getCaminho3();
+                                    DataDTO dto = new DataDTO(Converter(resultado), nodosGerados, nodosExpandidos, resultTime);
+                                    return dto;
                                 }
                             }
                         }
@@ -339,7 +415,7 @@ public class Bidirectional {
 
             }
         }
-        return "não deu";
+        return null;
     }
 
     public ArrayList<Ponto> Converter(String pontos) {
