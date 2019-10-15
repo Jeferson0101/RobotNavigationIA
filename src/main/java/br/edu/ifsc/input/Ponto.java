@@ -56,9 +56,7 @@ public class Ponto {
 
     @Override
     public String toString() {
-        return "Ponto{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "{\"x\": " + x +
+                ", \"y\": " + y +"}";
     }
 }

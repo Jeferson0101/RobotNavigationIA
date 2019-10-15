@@ -54,11 +54,13 @@ public class DataDTO {
 
     @Override
     public String toString() {
-        return "DataDTO{" +
-                "pontos=" + pontos +
-                ", nodosGerados=" + nodosGerados +
-                ", nodosExpandidos=" + nodosExpandidos +
-                ", tempoExecucao=" + tempoExecucao +
+        return "{"
+                + "\"info\": {" +
+                "\"nos_gerados\": " + nodosGerados +
+                ", \"nos_expandidos\": " + nodosExpandidos +
+                ", \"tempo_de_processamento\": " + tempoExecucao +
+                "},"
+                + "\"solucao\": " + pontos +
                 '}';
     }
 }

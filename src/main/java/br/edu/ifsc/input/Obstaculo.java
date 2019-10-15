@@ -11,7 +11,8 @@ import com.google.gson.annotations.SerializedName;
 public class Obstaculo {
 
     public Obstaculo() {
-
+        altura = 1;
+        larg = 1;
     }
     @SerializedName("x")
     @Expose

@@ -12,6 +12,15 @@ import java.util.List;
 
 public class Dados {
 
+    public Dados() {
+        pInicialX = 2;
+        pInicialY = 2;
+        pFinalX = 5;
+        pFinalY = 5;
+    }
+
+    
+    
     @SerializedName("tamanhoX")
     @Expose
     private int tamanhoX;

@@ -62,7 +62,7 @@ public class Algorithm {
                     pontos = iDSearch.iterativeDeepeningSearch(initialmatrix);
                     break;
                 case Bidirecional:
-                    pontos = bidirecional.Converter(bidirecional.Buscar(dados));
+                    //pontos = bidirecional.Converter(bidirecional.Buscar(dados));
                     break;
                 case Custo_Uniforme:
                     pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);

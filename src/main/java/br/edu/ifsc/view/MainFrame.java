@@ -295,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (jCSelecao.getSelectedIndex() == 2) {
             r = new Resultado();
             Bidirectional bidirecional = new Bidirectional();
-            pontos = bidirecional.Converter(bidirecional.Buscar(dados));
+            //pontos = bidirecional.Converter(bidirecional.Buscar(dados));
             r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 3) {
             r = new Resultado();
