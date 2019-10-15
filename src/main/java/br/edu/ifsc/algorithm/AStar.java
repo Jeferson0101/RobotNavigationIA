@@ -90,7 +90,7 @@ public class AStar {
             int i = nodoAtual.getI() + 1;
             int j = nodoAtual.getJ();
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -100,7 +100,7 @@ public class AStar {
             j++;
             i--;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -109,7 +109,7 @@ public class AStar {
             i--;
             j--;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -118,7 +118,7 @@ public class AStar {
             i++;
             j--;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -126,7 +126,7 @@ public class AStar {
             }
             i++;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -134,7 +134,7 @@ public class AStar {
             }
             j = j + 2;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -142,7 +142,7 @@ public class AStar {
             }
             i = i - 2;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -150,7 +150,7 @@ public class AStar {
             }
             j = j - 2;
             this.verificaCaminho(dados, nodo, i, j);
-            if (verificaChegada(nodo, i, j)) {
+            if (verificaChegada(dados,nodo, i, j)) {
                 long stopTime = System.currentTimeMillis();
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminho, nodosGerados, nodosExpandidos, resultTime);
@@ -169,11 +169,14 @@ public class AStar {
      * @param j ponto Y onde o robo esta parado (processando).
      * @return retorna True caso seja o ponto de chegada, retorna False caso contrario.
      */
-    private boolean verificaChegada(Nodo[][] no, int i, int j) {
-        if (no[i][j].isIsEnd()) {
-            no[i][j].setPeso(nodoAtual.getPeso() + 1);
-            caminho.add(new Ponto(i, j));
-            return true;
+    private boolean verificaChegada(Dados dados,Nodo[][] no, int i, int j) {
+        if (!(i < 0 || i > dados.getTamanhoX() || j < 0 | j > dados.getTamanhoY())) {
+            if (no[i][j].isIsEnd()) {
+                no[i][j].setPeso(nodoAtual.getPeso() + 1);
+                caminho.add(new Ponto(i, j));
+                System.out.println("Saida");
+                return true;
+            }
         }
         return false;
     }

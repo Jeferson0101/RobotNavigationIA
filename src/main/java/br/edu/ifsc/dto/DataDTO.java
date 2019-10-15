@@ -11,6 +11,8 @@ public class DataDTO {
     private int nodosExpandidos;
     private long tempoExecucao;
 
+    public DataDTO(){}
+
     public DataDTO(ArrayList<Ponto> pontos, int nodosGerados, int nodosExpandidos, long tempoExecucao) {
         this.pontos = pontos;
         this.nodosGerados = nodosGerados;
