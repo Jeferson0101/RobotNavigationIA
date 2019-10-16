@@ -26,7 +26,6 @@ public class ChamadasFront {
     private DeepSearch deepSearch = new DeepSearch();
     private IterativeDeepeningSearch iterativeDeepeningSearch = new IterativeDeepeningSearch();
     private UniformCost uniformCost = new UniformCost();
-    Robot robot = new Robot();
 
 
     @CrossOrigin
@@ -43,32 +42,27 @@ public class ChamadasFront {
                 Matrix matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
                 dto = deepSearch.deepSearch(matrix);
                 System.out.println("Retorno deepSearch: " + new ResponseEntity<DataDTO>(dto, HttpStatus.OK));
-                robot.Enviar(dto.getPontos().toString());
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 1:
                 Matrix matrixInterativeDeep = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
                 dto = iterativeDeepeningSearch.iterativeDeepeningSearch(matrixInterativeDeep);
                 System.out.println("Retorno Iterative: " + new ResponseEntity<DataDTO>(dto, HttpStatus.OK));
-                robot.Enviar(dto.getPontos().toString());
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 2:
                 dto = bidirecional.Buscar(dados);
                 System.out.println("Retorno Bidirecional: " + new ResponseEntity<DataDTO>(dto, HttpStatus.OK));
-                robot.Enviar(dto.getPontos().toString());
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 3:
                 dto = uniformCost.Buscar(dados);
                 System.out.println("Retorno UniformCost: " + new ResponseEntity<DataDTO>(dto, HttpStatus.OK));
-                robot.Enviar(dto.getPontos().toString());
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 4:
                 dto = aStar.AStar(dados);
                 System.out.println("Retorno ASTAR: " + new ResponseEntity<DataDTO>(dto, HttpStatus.OK));
-                robot.Enviar(dto.getPontos().toString());
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             default:
