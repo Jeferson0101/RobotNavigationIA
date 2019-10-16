@@ -67,6 +67,8 @@ public class Algorithm {
                 case Custo_Uniforme:
                     pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados).getPontos();
                     break;
+
+
 //                case A_Estrela:
 //                    pontos = aStar.AStar(dados);
 //                    break;

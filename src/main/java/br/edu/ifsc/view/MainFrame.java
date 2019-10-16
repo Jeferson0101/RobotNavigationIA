@@ -298,10 +298,12 @@ public class MainFrame extends javax.swing.JFrame {
             //pontos = bidirecional.Converter(bidirecional.Buscar(dados));
             r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 3) {
+
             r = new Resultado();
             UniformCost custoUniforme = new UniformCost();
             pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados).getPontos();
             r.Resultado(dados, pontos);
+
         } else if (jCSelecao.getSelectedIndex() == 4) {
 //            r = new Resultado();
 //            AStar aStar = new AStar();
