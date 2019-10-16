@@ -58,7 +58,7 @@ public class DataDTO {
                 + "\"info\": {" +
                 "\"nos_gerados\": " + nodosGerados +
                 ", \"nos_expandidos\": " + nodosExpandidos +
-                ", \"tempo_de_processamento\": " + tempoExecucao +
+                ", \"tempo_de_processamento\": " + tempoExecucao + " milissegundos" +
                 "},"
                 + "\"solucao\": " + pontos +
                 '}';

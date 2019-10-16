@@ -65,8 +65,8 @@ public class Algorithm {
                     //pontos = bidirecional.Converter(bidirecional.Buscar(dados));
                     break;
                 case Custo_Uniforme:
-                    pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
-                    break;
+//                    pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
+//                    break;
 //                case A_Estrela:
 //                    pontos = aStar.AStar(dados);
 //                    break;

@@ -13,32 +13,40 @@ import java.util.List;
 public class Dados {
 
     public Dados() {
+
         pInicialX = 2;
-        pInicialY = 2;
+        pInicialY = 3;
         pFinalX = 5;
-        pFinalY = 5;
+        pFinalY = 9;
+
+
     }
 
-    
+
+    @SerializedName("pInicialX")
+    @Expose
+    private int pInicialX;
+
+    @SerializedName("pInicialY")
+    @Expose
+    private int pInicialY;
+
+    @SerializedName("pFinalX")
+    @Expose
+    private int pFinalX;
+
+    @SerializedName("pFinalY")
+    @Expose
+    private int pFinalY;
     
     @SerializedName("tamanhoX")
     @Expose
     private int tamanhoX;
+
     @SerializedName("tamanhoY")
     @Expose
     private int tamanhoY;
-    @SerializedName("pInicialX")
-    @Expose
-    private int pInicialX;
-    @SerializedName("pInicialY")
-    @Expose
-    private int pInicialY;
-    @SerializedName("pFinalX")
-    @Expose
-    private int pFinalX;
-    @SerializedName("pFinalY")
-    @Expose
-    private int pFinalY;
+
     @SerializedName("tipoAlg")
     @Expose
     private int tipoAlg;
