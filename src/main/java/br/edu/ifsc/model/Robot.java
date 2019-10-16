@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- *
  * @author cesar
  */
 public class Robot {
@@ -26,25 +25,25 @@ public class Robot {
     Socket sock = null;
     private DataOutputStream mDataOutputStream;
     public final static int SOCKET_PORT = 23;
-    public final static String SERVER = "192.168.0.107";
+    public final static String SERVER = "192.168.0.24";
     public final static String FILE_TO_SEND = "C:\\Users\\Jeferson\\Documents\\RobotNavigationIA\\src\\main\\java\\br\\edu\\ifsc\\jsons\\resultado.json";
 
     public void Enviar(String msg) throws IOException {
         try {
-            
-            System.out.println("Connecting to "+ SERVER +" at port "+ SOCKET_PORT + "...");
+
+            System.out.println("Connecting to " + SERVER + " at port " + SOCKET_PORT + "...");
             sock = new Socket(SERVER, SOCKET_PORT);
             System.out.println("Mensagem: " + msg);
             mDataOutputStream = new DataOutputStream(this.sock.getOutputStream());
             mDataOutputStream.writeUTF(msg);
-            //mDataOutputStream.wait(1000);
+            mDataOutputStream.wait(1000);
             // send msg
-            //String mensagem="jogada 1";
-            //PrintWriter out = new PrintWriter(sock.getOutputStream(),true);
-            
-            //out.println(msg);
-            //out.close();
-            //sock.close();
+            String mensagem = "jogada 1";
+            PrintWriter out = new PrintWriter(sock.getOutputStream(), true);
+
+            out.println(msg);
+            out.close();
+            sock.close();
 
         } catch (Exception ex) {
             System.out.println("Conexão fechada inesperada");

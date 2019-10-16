@@ -3,24 +3,18 @@ package br.edu.ifsc.input;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Felipe
  */
 
 public class Dados {
 
     public Dados() {
-
-        pInicialX = 2;
-        pInicialY = 3;
-        pFinalX = 5;
-        pFinalY = 9;
-
-
     }
+
     @SerializedName("tamanhoX")
     @Expose
     private int tamanhoX;
@@ -42,13 +36,13 @@ public class Dados {
     @SerializedName("pFinalY")
     @Expose
     private int pFinalY;
-    
+
     @SerializedName("tipoAlg")
     @Expose
     private int tipoAlg;
     @SerializedName("obstaculos")
     @Expose
-    private List<Obstaculo> obstaculos = null;
+    private List<Obstaculo> obstaculos = new ArrayList<>();
 
     public int getTamanhoX() {
         return tamanhoX;
@@ -117,6 +111,18 @@ public class Dados {
     @Override
     public String toString() {
         return "Dados{" + "tamanhoX=" + tamanhoX + ", tamanhoY=" + tamanhoY + ", pInicialX=" + pInicialX + ", pInicialY=" + pInicialY + ", pFinalX=" + pFinalX + ", pFinalY=" + pFinalY + ", tipoAlg=" + tipoAlg + ", obstaculos=" + obstaculos + '}';
+    }
+
+    public Dados fromFrontData(FrontData front) {
+        this.tipoAlg = front.getTipoAlg();
+        this.obstaculos = front.getObstaculos();
+        this.pFinalX = front.getpFinalX();
+        this.pFinalY = front.getpFinalY();
+        this.pInicialX = front.getpInicialX();
+        this.pInicialY = front.getpInicialY();
+        this.tamanhoX = front.getTamanhoX();
+        this.tamanhoY = front.getTamanhoY();
+        return this;
     }
 
 }

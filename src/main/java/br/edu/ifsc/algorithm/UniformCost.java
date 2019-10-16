@@ -9,13 +9,13 @@ import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Dados;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Nodo;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 /**
- *
  * @author Jeferson
  */
 public class UniformCost {
@@ -82,7 +82,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
             coluna++;
             linha--;
@@ -95,7 +95,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
             linha--;
             coluna--;
@@ -107,7 +107,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
             linha++;
             coluna--;
@@ -119,7 +119,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
 
             //diagonais
@@ -132,7 +132,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
 
             coluna = coluna + 2;
@@ -144,7 +144,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
 
             linha = linha - 2;
@@ -156,7 +156,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
 
             coluna = coluna - 2;
@@ -168,7 +168,7 @@ public class UniformCost {
                 long resultTime = stopTime - startTime;
                 DataDTO dto = new DataDTO(caminhoFinal, nodosGerados, nodosExpandidos, resultTime);
                 return dto;
-                
+
             }
         }
         System.out.println("Cabou os nodos da lista");
@@ -186,15 +186,13 @@ public class UniformCost {
                                     nodosGerados++;
                                     nodo[linha][coluna].setVisited(Boolean.TRUE);
                                     // pega o caminho do nodo atual E adiciona um novo ponto
-                                    
                                     nodo[linha][coluna].setCaminho3(caminho + ";" + linha + ":" + coluna);
                                     fila.add(nodo[linha][coluna]);
                                 } else {
                                     // acrescenta a última coordenada!
-                                    
+
                                     caminho = caminho + ";" + linha + ":" + coluna;
                                     Converter(caminho, caminhoFinal);
-                                    System.out.println(caminho);
                                     return true;
                                 }
                             }

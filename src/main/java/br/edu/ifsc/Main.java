@@ -50,7 +50,7 @@ public class Main {
         Socket sock = null;
         int bytesRead;
         int current = 0;
-        Robot robot = new Robot();
+
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
         try {
