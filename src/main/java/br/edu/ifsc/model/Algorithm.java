@@ -56,22 +56,22 @@ public class Algorithm {
             long init = System.nanoTime();
             switch (dados.getTipoAlg()) {
                 case Busca_Profundidade:
-                    pontos = dSearch.deepSearch(initialmatrix);
+                    pontos = dSearch.deepSearch(initialmatrix).getPontos();
                     break;
                 case Profundidade_Interativa:
-                    pontos = iDSearch.iterativeDeepeningSearch(initialmatrix);
+                    pontos = iDSearch.iterativeDeepeningSearch(initialmatrix).getPontos();
                     break;
                 case Bidirecional:
                     //pontos = bidirecional.Converter(bidirecional.Buscar(dados));
                     break;
                 case Custo_Uniforme:
-                    pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
+                    pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados).getPontos();
                     break;
 //                case A_Estrela:
 //                    pontos = aStar.AStar(dados);
 //                    break;
                 case Largura:
-                    pontos = sWidth.searchWidth(initialmatrix);
+                    pontos = sWidth.searchWidth(initialmatrix).getPontos();
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + dados.getTipoAlg());

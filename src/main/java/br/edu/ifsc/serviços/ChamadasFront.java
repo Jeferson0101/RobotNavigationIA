@@ -3,6 +3,8 @@ package br.edu.ifsc.serviços;
 import br.edu.ifsc.algorithm.*;
 import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Dados;
+import br.edu.ifsc.model.Matrix;
+import br.edu.ifsc.model.NodeManager;
 import com.google.gson.Gson;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -23,19 +25,20 @@ public class ChamadasFront {
     private UniformCost uniformCost = new UniformCost();
 
 
-    @CrossOrigin
-    @RequestMapping(value = "/busca", method = RequestMethod.POST)
+    @PostMapping("/busca")
     public ResponseEntity<String> search(@RequestBody Dados dados) {
         System.out.println("Entrouuu");
         System.out.println(dados.toString());
 
         switch (dados.getTipoAlg()){
             case 0:
-                // = deepSearch.deepSearch();
+                Matrix matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
+                dto = deepSearch.deepSearch(matrix);
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 1:
-                //dto = iterativeDeepeningSearch.iterativeDeepeningSearch();
+                Matrix matrixInterativeDeep = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
+                dto = iterativeDeepeningSearch.iterativeDeepeningSearch(matrixInterativeDeep);
                 return new ResponseEntity<String>(dto.toString(), HttpStatus.OK);
 
             case 2:

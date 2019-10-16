@@ -6,6 +6,7 @@
 
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Ponto;
 import br.edu.ifsc.model.Matrix;
 import br.edu.ifsc.model.NodeManager;
@@ -22,8 +23,8 @@ import java.util.Queue;
 public class SearchWidth {
     public Queue<Matrix> queue = new ArrayDeque<>();
     public int nodeProcessed = 0;
-    
-    public ArrayList<Ponto> searchWidth(Matrix init) {
+    DataDTO dataDTO = new DataDTO();
+    public DataDTO searchWidth(Matrix init) {
         queue.clear();
         long ini = (System.nanoTime());
         try {
@@ -38,7 +39,11 @@ public class SearchWidth {
                         System.out.println("Terminou no Nivel: " + newNode.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, newNode.level, queue.size()));
                         queue.clear();
-                        return newNode.clone().getMoves();
+                        dataDTO.setNodosExpandidos(nodeProcessed);
+                        dataDTO.setNodosGerados(NodeManager.totalNodes);
+                        dataDTO.setPontos(newNode.clone().getMoves());
+                        dataDTO.setTempoExecucao(fim - ini);
+                        return dataDTO;
                     } else {
                         queue.add(newNode.clone());
                     }

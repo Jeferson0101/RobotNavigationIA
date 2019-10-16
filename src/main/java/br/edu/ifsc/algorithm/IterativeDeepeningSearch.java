@@ -6,6 +6,7 @@
 
 package br.edu.ifsc.algorithm;
 
+import br.edu.ifsc.dto.DataDTO;
 import br.edu.ifsc.input.Ponto;
 import static br.edu.ifsc.model.Algorithm.validatePosition;
 import br.edu.ifsc.model.Matrix;
@@ -22,9 +23,9 @@ import java.util.Stack;
 public class IterativeDeepeningSearch {
     public Stack<Matrix> stack = new Stack<>();
     public int nodeProcessed = 0;
-    ArrayList<Ponto> pontos = new ArrayList<>();
+    DataDTO dataDTO = new DataDTO();
     
-    public ArrayList<Ponto> iterativeDeepeningSearch(Matrix init) {
+    public DataDTO iterativeDeepeningSearch(Matrix init) {
         int initLevel = 1;
         stack.clear();
         long ini = (System.nanoTime());
@@ -39,11 +40,16 @@ public class IterativeDeepeningSearch {
                     for (Matrix newNode : newNodes) {
                         newNode.level++;
                         if (validatePosition(matrix, Matrix.roboFinalPositionX, Matrix.roboFinalPositionY)) {
+                            long fim = (System.nanoTime());
                             nodeProcessed++;
                             System.out.println("Terminou no Nivel: " + matrix.level);
                             System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                             stack.clear();
-                            return matrix.clone().getMoves();
+                            dataDTO.setNodosExpandidos(nodeProcessed);
+                            dataDTO.setNodosGerados(NodeManager.totalNodes);
+                            dataDTO.setPontos(matrix.clone().getMoves());
+                            dataDTO.setTempoExecucao(fim - ini);
+                            return dataDTO;
                            
                           
                         }
@@ -56,7 +62,11 @@ public class IterativeDeepeningSearch {
                         System.out.println("Terminou no Nivel: " + matrix.level);
                         System.out.println(String.format("Total de Nodos Gerados: %d Total de Nodos Processados: %d Nivel: %d Sobrou na Fila: %d", NodeManager.totalNodes, nodeProcessed, matrix.level, stack.size()));
                         stack.clear();
-                        return matrix.clone().getMoves();
+                        dataDTO.setNodosExpandidos(nodeProcessed);
+                        dataDTO.setNodosGerados(NodeManager.totalNodes);
+                        dataDTO.setPontos(matrix.clone().getMoves());
+                        dataDTO.setTempoExecucao(fim - ini);
+                        return dataDTO;
                     }
                 }
                 if (stack.isEmpty()) {

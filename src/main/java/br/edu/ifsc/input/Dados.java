@@ -18,8 +18,6 @@ public class Dados {
         pFinalX = 5;
         pFinalY = 5;
     }
-
-    
     
     @SerializedName("tamanhoX")
     @Expose

@@ -281,7 +281,7 @@ public class MainFrame extends javax.swing.JFrame {
             r = new Resultado();
             DeepSearch dSearch = new DeepSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
-            pontos = dSearch.deepSearch(matrix);
+            pontos = dSearch.deepSearch(matrix).getPontos();
             
             r.Resultado(dados, pontos);
             
@@ -290,7 +290,7 @@ public class MainFrame extends javax.swing.JFrame {
             r = new Resultado();
             IterativeDeepeningSearch iDSearch = new IterativeDeepeningSearch();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
-            pontos = iDSearch.iterativeDeepeningSearch(matrix);
+            pontos = iDSearch.iterativeDeepeningSearch(matrix).getPontos();
             r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 2) {
             r = new Resultado();
@@ -300,7 +300,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (jCSelecao.getSelectedIndex() == 3) {
             r = new Resultado();
             UniformCost custoUniforme = new UniformCost();
-            pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados);
+            pontos = (ArrayList<Ponto>) custoUniforme.Buscar(dados).getPontos();
             r.Resultado(dados, pontos);
         } else if (jCSelecao.getSelectedIndex() == 4) {
 //            r = new Resultado();
@@ -311,7 +311,7 @@ public class MainFrame extends javax.swing.JFrame {
             r = new Resultado();
             SearchWidth sWidth = new SearchWidth();
             matrix = new NodeManager(dados.getObstaculos()).makeInitialSetupByFront(dados);
-            pontos = sWidth.searchWidth(matrix);
+            pontos = sWidth.searchWidth(matrix).getPontos();
             r.Resultado(dados, pontos);
         }
 
